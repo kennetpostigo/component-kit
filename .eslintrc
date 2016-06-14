@@ -23,6 +23,7 @@
     "react/react-in-jsx-scope": 2
   },
   "plugins": [
-    "react"
+    "react",
+    "babel"
   ]
 }
