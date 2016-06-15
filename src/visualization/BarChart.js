@@ -1,48 +1,56 @@
 import React from 'react';
 import d3 from 'd3';
 import ReactFauxDOM from 'react-faux-dom';
-import {StyleSheet, css} from 'aphrodite';
 
 class BarChart extends React.Component {
   render () {
-    var styles = StyleSheet.create(this.props.styles);
+    const {data, width, height} = this.props;
+    const innerW = width - 70,
+          innerH = height - 50;
 
-    const { width, height, data } = this.props;
+    var x = d3.scale.ordinal()
+        .domain(data.map((d) => d.name))
+        .rangeRoundBands([0, innerW], .1);
 
     var y = d3.scale.linear()
-      .domain([0, d3.max(data)])
-      .range([height, 0]);
+        .domain([0, d3.max(data, (d) => d.value)])
+        .range([innerH, 0]);
+
+    var xAxis = d3.svg.axis()
+        .scale(x)
+        .orient('bottom');
+
+    var yAxis = d3.svg.axis()
+        .scale(y)
+        .orient('left');
 
     var chart = d3.select(ReactFauxDOM.createElement('svg'))
-      .attr("width", width)
-      .attr("height", height);
+      .attr('width', width)
+      .attr('height', height)
+    .append('g')
+      .attr('transform', `translate(40, 20)`);
 
-    var barWidth = width / data.length;
+    chart.append('g')
+      .attr('class', 'x axis')
+      .attr('transform', `translate(0, ${innerH})`)
+      .call(xAxis)
 
-    var bar = chart.selectAll("g")
+    chart.append('g')
+      .attr('class', 'y axis')
+      .call(yAxis);
+
+    chart.selectAll('.bar')
       .data(data)
-      .enter().append("g")
-      .attr("transform", (d, i) => `translate(${i * barWidth}, 0)`);
-
-    bar.append("rect")
-      .attr("y", (d) => y(d))
-      .attr("height", (d) => height - y(d))
-      .attr("width", barWidth - this.props.barGap)
-      .attr('class', `${css(styles.rect)}`);
-
-    bar.append("text")
-      .attr("x", barWidth / 2)
-      .attr("y", (d) => y(d) + 10)
-      .attr("dy", ".75em")
-      .text((d) => d)
-      .attr('class', `${css(styles.text)}`);
+    .enter().append('rect')
+      .attr('class', 'bar')
+      .attr('x', (d) => x(d.name))
+      .attr('y', (d) => y(d.value))
+      .attr('height', (d) => innerH - y(d.value))
+      .attr('width', x.rangeBand());
 
     return chart.node().toReact();
   }
 }
-
-
-
 
 BarChart.proptypes = {
   width: React.PropTypes.number,
