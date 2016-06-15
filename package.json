@@ -1,11 +1,12 @@
 {
   "name": "component-kit",
-  "version": "0.1.0",
+  "version": "0.1.5",
   "description": "component-kit, a library for modern data-driven applications",
-  "main": "index.js",
+  "main": "./dist/component-kit.js",
   "scripts": {
     "build:develop": "cross-env NODE_ENV=development webpack src/index.js dist/component-kit.js",
     "build:production": "cross-env NODE_ENV=production webpack src/index.js dist/component-kit.min.js",
+    "build:publish": "npm run build:develop && npm run build:production",
     "build-watch": "npm run webpack --watch"
   },
   "repository": {
@@ -42,14 +43,7 @@
   },
   "dependencies": {
     "aphrodite": "0.3.3",
-    "d3-array": "0.8.1",
-    "d3-axis": "0.4.1",
-    "d3-color": "0.5.0",
-    "d3-hierarchy": "0.3.0",
-    "d3-scale": "0.9.1",
-    "d3-selection": "0.8.0",
-    "d3-shape": "0.7.0",
-    "d3-transition": "0.3.0",
+    "d3": "3.5.17",
     "react-faux-dom": "2.5.0"
   }
 }
