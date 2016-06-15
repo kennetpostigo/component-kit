@@ -28,26 +28,26 @@ class BarChart extends React.Component {
       .attr('width', width)
       .attr('height', height)
 
-      chart.append('g')
-           .attr('transform', `translate(${40}, ${20})`);
+    var g = chart.append('g')
+         .attr('transform', `translate(${40}, ${20})`);
 
-      chart.append('g')
-           .attr('class', 'x axis')
-           .attr('transform', `translate(0, ${innerH})`)
-           .call(xAxis)
+    g.append('g')
+         .attr('class', 'x axis')
+         .attr('transform', `translate(0, ${innerH})`)
+         .call(xAxis)
 
-      chart.append('g')
-           .attr('class', 'y axis')
-           .call(yAxis);
+    g.append('g')
+         .attr('class', 'y axis')
+         .call(yAxis);
 
-      chart.selectAll('.bar')
-        .data(data)
-        .enter().append('rect')
-        .attr('class', 'bar')
-        .attr('x', (d) => x(d.name))
-        .attr('y', (d) => y(d.value))
-        .attr('height', (d) => innerH - y(d.value))
-        .attr('width', x.rangeBand());
+    g.selectAll('.bar')
+      .data(data)
+      .enter().append('rect')
+      .attr('class', 'bar')
+      .attr('x', (d) => x(d.name))
+      .attr('y', (d) => y(d.value))
+      .attr('height', (d) => innerH - y(d.value))
+      .attr('width', x.rangeBand());
 
     return chart.node().toReact();
   }

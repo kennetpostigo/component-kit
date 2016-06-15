@@ -1,5 +1,19 @@
 .bar {
-  fill: steelblue;
+  fill: rgb(136, 132, 216);
+  fill-opacity: 0.6;
+}
+
+.area {
+  fill: rgb(136, 132, 216);
+  fill-opacity: 0.6;
+  stroke-linecap:round;
+  stroke-linehoin: round;
+}
+
+.line {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 1.5px;
 }
 
 .axis text {
@@ -8,16 +22,12 @@
 
 .axis path,
 .axis line {
-  fill: none;
   stroke: #000;
   shape-rendering: crispEdges;
 }
 
 .arc text {
   font: 10px sans-serif;
+  fill: #fff;
   text-anchor: middle;
-}
-
-.arc path {
-  stroke: #fff;
 }

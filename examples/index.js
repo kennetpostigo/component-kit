@@ -2,6 +2,7 @@ import React from 'react'
 import { Cards } from './../dist/component-kit.js';
 import { BarChart } from './../dist/component-kit.js';
 import { AreaChart } from './../dist/component-kit.js';
+import { LineChart } from './../dist/component-kit.js';
 import { PieChart } from './../dist/component-kit.js';
 import { render } from 'react-dom';
 
@@ -35,15 +36,24 @@ var data = [
 ];
 
 var data2 = [
-  {x: 20, y: 2001},
-  {x: 20, y: 2002},
-  {x: 20, y: 2003},
-  {x: 20, y: 2004},
-  {x: 20, y: 2005},
-  {x: 20, y: 2006},
-  {x: 20, y: 2007},
-  {x: 20, y: 2008}
+  {x: 2001, y: 0},
+  {x: 2002, y: 30},
+  {x: 2003, y: 45},
+  {x: 2004, y: 46},
+  {x: 2005, y: 37},
+  {x: 2006, y: 20},
+  {x: 2007, y: 15},
+  {x: 2008, y: 30}
+]
 
+var data3 = [
+  {x: 5, y: 63584},
+  {x: 10, y: 42839},
+  {x: 12, y: 35894},
+  {x: 18, y: 58934},
+  {x: 25, y: 74323},
+  {x: 30, y: 24839},
+  {x: 50, y: 12839}
 ]
 
 var color = [
@@ -59,52 +69,62 @@ function App (props) {
   return (
     <div>
       <p>Examples</p>
-      <BarChart width={960}
-                height={500}
+      <BarChart width={500}
+                height={350}
                 data={data}
       />
       <br />
-      <br />
-      <AreaChart width={960}
-                 height={500}
+      <AreaChart width={500}
+                 height={350}
                  data={data2}
       />
       <br />
+      <LineChart width={500}
+                 height={350}
+                 data={data2}
+      />
       <br />
-      <PieChart width={960}
-                height={500}
-                radius={250}
-                data={data2}
+      <PieChart width={500}
+                height={350}
+                radius={175}
+                data={data3}
+                colors={color}
+      />
+      <PieChart width={500}
+                height={350}
+                radius={175}
+                donut={true}
+                data={data3}
                 colors={color}
       />
 
-    <Cards imgURI="http://placehold.it/300x200"
-           width={300}
-           height={350}
-           imgHeight={200}
-           imgWidth={300}>
-      <h3>Kangaroo Valley Safari</h3>
-      <p>Located two hours south of Sydney in the Southern Highlands of New South Wales, ...</p>
-    </Cards>
-    <br />
-    <Cards imgURI="http://placehold.it/300x200"
-           width={300}
-           height={350}
-           imgHeight={200}
-           imgWidth={300}
-           header="Kangaroo Valey Safari"
-           detail="Located two hours south of Sydney in the Southern Highlands of New South Wales, ..."
-           links={[
-             {
-               href: 'http://google.com',
-               title: 'google'
-             },
-             {
-               href: 'http://facebook.com',
-               title: 'facebook'
-             }
-           ]}>
-    </Cards>
+      <Cards imgURI="http://placehold.it/300x200"
+             width={300}
+             height={350}
+             imgHeight={200}
+             imgWidth={300}>
+        <h3>Kangaroo Valley Safari</h3>
+        <p>Located two hours south of Sydney in the Southern Highlands of New South Wales, ...</p>
+      </Cards>
+      <br />
+      <Cards imgURI="http://placehold.it/300x200"
+             width={300}
+             height={350}
+             imgHeight={200}
+             imgWidth={300}
+             header="Kangaroo Valey Safari"
+             detail="Located two hours south of Sydney in the Southern Highlands of New South Wales, ..."
+             links={[
+               {
+                 href: 'http://google.com',
+                 title: 'google'
+               },
+               {
+                 href: 'http://facebook.com',
+                 title: 'facebook'
+               }
+             ]}>
+      </Cards>
     </div>
   );
 }

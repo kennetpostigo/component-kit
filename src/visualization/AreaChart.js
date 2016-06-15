@@ -32,28 +32,28 @@ class AreaChart extends React.Component {
         .attr('width', width)
         .attr('height', height)
 
-        chart.append('g')
-             .attr('transform', `translate(50, 20)`);
+    var g = chart.append('g')
+         .attr('transform', `translate(50, 20)`);
 
-        chart.append('path')
-              .datum(data)
-              .attr('class', 'area')
-              .attr('d', area);
+    g.append('path')
+          .datum(data)
+          .attr('class', 'area')
+          .attr('d', area);
 
-        chart.append("g")
-            .attr('class', 'x axis')
-            .attr('transform', `translate(0, ${innerH})`)
-            .call(xAxis);
+    g.append("g")
+        .attr('class', 'x axis')
+        .attr('transform', `translate(0, ${innerH})`)
+        .call(xAxis);
 
-        chart.append("g")
-            .attr('class', 'y axis')
-            .call(yAxis)
-          .append('text')
-            .attr('transform', 'rotate(-90)')
-            .attr('y', 6)
-            .attr('dy', '.71em')
-            .style('text-anchor', 'end')
-            .text('user specified');
+    g.append("g")
+        .attr('class', 'y axis')
+        .call(yAxis)
+      .append('text')
+        .attr('transform', 'rotate(-90)')
+        .attr('y', 6)
+        .attr('dy', '.71em')
+        .style('text-anchor', 'end')
+        .text('user specified');
 
     return chart.node().toReact();
   }

@@ -32,20 +32,20 @@ class LineChart extends React.Component {
         .attr('width', width)
         .attr('height', height);
 
-    chart.append('g')
+    var g = chart.append('g')
         .attr('transform', `translate(50, 20)`);
 
-    chart.append('path')
+    g.append('path')
         .datum(data)
         .attr('class', 'line')
         .attr('d', line);
 
-    chart.append("g")
+    g.append("g")
         .attr('class', 'x axis')
         .attr('transform', `translate(0, ${innerH})`)
         .call(xAxis);
 
-    chart.append('g')
+    g.append('g')
         .attr('class', 'y axis')
         .call(yAxis)
         .append('text')
