@@ -4,6 +4,7 @@ import { BarChart } from './../dist/component-kit.js';
 import { AreaChart } from './../dist/component-kit.js';
 import { LineChart } from './../dist/component-kit.js';
 import { PieChart } from './../dist/component-kit.js';
+import { ScatterPlot } from './../dist/component-kit.js';
 import { render } from 'react-dom';
 
 var data = [
@@ -56,6 +57,17 @@ var data3 = [
   {x: 50, y: 12839}
 ]
 
+var data4 = [
+  {x: 2001, y: 0, t: 'k1'},
+  {x: 2002, y: 30, t: 'k2'},
+  {x: 2003, y: 45, t: 'k3'},
+  {x: 2004, y: 46, t: 'k1'},
+  {x: 2005, y: 37, t: 'k1'},
+  {x: 2006, y: 20, t: 'k2'},
+  {x: 2007, y: 15, t: 'k2'},
+  {x: 2008, y: 30, t: 'k3'}
+]
+
 var color = [
   "#98abc5",
   "#8a89a6",
@@ -69,35 +81,39 @@ function App (props) {
   return (
     <div>
       <p>Examples</p>
-      <BarChart width={500}
-                height={350}
+      <BarChart width={250}
+                height={200}
                 data={data}
       />
       <br />
-      <AreaChart width={500}
-                 height={350}
+      <AreaChart width={250}
+                 height={200}
                  data={data2}
       />
       <br />
-      <LineChart width={500}
-                 height={350}
+      <LineChart width={250}
+                 height={200}
                  data={data2}
       />
       <br />
-      <PieChart width={500}
-                height={350}
-                radius={175}
+      <PieChart width={250}
+                height={200}
+                radius={100}
                 data={data3}
                 colors={color}
       />
-      <PieChart width={500}
-                height={350}
-                radius={175}
-                donut={true}
+      <PieChart width={250}
+                height={200}
+                radius={100}
+                donut={2}
                 data={data3}
                 colors={color}
-      />
-
+        />
+      <br />
+      <ScatterPlot width={250}
+                   height={200}
+                   data={data4}
+       />
       <Cards imgURI="http://placehold.it/300x200"
              width={300}
              height={350}

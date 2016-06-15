@@ -5,7 +5,7 @@ import ReactFauxDOM from 'react-faux-dom';
 class PieChart extends React.Component {
   render () {
     const {width, height, radius, colors, data, donut} = this.props;
-    const colorFill = (donut) ? radius - radius / 2 : 0;
+    const colorFill = (donut) ? radius - radius / donut : 0;
     var color = d3.scale.ordinal()
         .range(colors);
 
@@ -46,11 +46,12 @@ class PieChart extends React.Component {
   }
 }
 
-PieChart.proptypes = {
+PieChart.propTypes = {
   width: React.PropTypes.number,
   height: React.PropTypes.number,
   radius: React.PropTypes.number,
   colors: React.PropTypes.array,
+  donut: React.PropTypes.number,
   data: React.PropTypes.array
 }
 

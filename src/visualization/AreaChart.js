@@ -59,7 +59,7 @@ class AreaChart extends React.Component {
   }
 }
 
-AreaChart.proptypes = {
+AreaChart.propTypes = {
   width: React.PropTypes.number,
   height: React.PropTypes.number,
   data: React.PropTypes.array

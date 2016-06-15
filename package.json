@@ -44,6 +44,7 @@
   "dependencies": {
     "aphrodite": "0.3.3",
     "d3": "3.5.17",
-    "react-faux-dom": "2.5.0"
+    "react-faux-dom": "2.5.0",
+    "react-motion": "0.4.4"
   }
 }

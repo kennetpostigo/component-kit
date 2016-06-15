@@ -14,6 +14,7 @@ import LineChart from './visualization/LineChart.js';
 import PieChart from './visualization/PieChart.js';
 // import RadarChart from './visualization/RadarChart.js';
 // import RadialBarChart from './visualization/RadialBarChart.js';
+import ScatterPlot from './visualization/ScatterPlot.js';
 // import TreeMap from './visualization/TreeMap.js';
 
 export {
@@ -30,8 +31,9 @@ export {
   BarChart,
   // ComposedChart,
   LineChart,
-  PieChart
+  PieChart,
   // RadarChart,
   // RadialBarChart,
+  ScatterPlot
   // TreeMap
 }

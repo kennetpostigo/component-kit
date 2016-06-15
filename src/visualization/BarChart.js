@@ -53,7 +53,7 @@ class BarChart extends React.Component {
   }
 }
 
-BarChart.proptypes = {
+BarChart.propTypes = {
   width: React.PropTypes.number,
   height: React.PropTypes.number,
   data: React.PropTypes.array,

@@ -59,7 +59,7 @@ class LineChart extends React.Component {
   }
 }
 
-LineChart.proptypes = {
+LineChart.propTypes = {
   width: React.PropTypes.number,
   height: React.PropTypes.number,
   data: React.PropTypes.array
