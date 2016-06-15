@@ -15,7 +15,7 @@ import PieChart from './visualization/PieChart.js';
 // import RadarChart from './visualization/RadarChart.js';
 // import RadialBarChart from './visualization/RadialBarChart.js';
 import ScatterPlot from './visualization/ScatterPlot.js';
-// import TreeMap from './visualization/TreeMap.js';
+import TreeMap from './visualization/TreeMap.js';
 
 export {
   Cards,
@@ -34,6 +34,6 @@ export {
   PieChart,
   // RadarChart,
   // RadialBarChart,
-  ScatterPlot
-  // TreeMap
+  ScatterPlot,
+  TreeMap
 }
