@@ -5,8 +5,8 @@ import ReactFauxDOM from 'react-faux-dom';
 class BarChart extends React.Component {
   render () {
     const {data, width, height} = this.props;
-    const innerW = width - 70,
-          innerH = height - 50;
+    const innerW = width - 60,
+          innerH = height - 60;
 
     var x = d3.scale.ordinal()
         .domain(data.map((d) => d.name))
@@ -27,26 +27,27 @@ class BarChart extends React.Component {
     var chart = d3.select(ReactFauxDOM.createElement('svg'))
       .attr('width', width)
       .attr('height', height)
-    .append('g')
-      .attr('transform', `translate(40, 20)`);
 
-    chart.append('g')
-      .attr('class', 'x axis')
-      .attr('transform', `translate(0, ${innerH})`)
-      .call(xAxis)
+      chart.append('g')
+           .attr('transform', `translate(${40}, ${20})`);
 
-    chart.append('g')
-      .attr('class', 'y axis')
-      .call(yAxis);
+      chart.append('g')
+           .attr('class', 'x axis')
+           .attr('transform', `translate(0, ${innerH})`)
+           .call(xAxis)
 
-    chart.selectAll('.bar')
-      .data(data)
-    .enter().append('rect')
-      .attr('class', 'bar')
-      .attr('x', (d) => x(d.name))
-      .attr('y', (d) => y(d.value))
-      .attr('height', (d) => innerH - y(d.value))
-      .attr('width', x.rangeBand());
+      chart.append('g')
+           .attr('class', 'y axis')
+           .call(yAxis);
+
+      chart.selectAll('.bar')
+        .data(data)
+        .enter().append('rect')
+        .attr('class', 'bar')
+        .attr('x', (d) => x(d.name))
+        .attr('y', (d) => y(d.value))
+        .attr('height', (d) => innerH - y(d.value))
+        .attr('width', x.rangeBand());
 
     return chart.node().toReact();
   }
