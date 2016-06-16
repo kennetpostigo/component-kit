@@ -3,9 +3,6 @@ import { css, StyleSheet } from 'aphrodite';
 
 function FooterNavigation (props) {
   var cols = Math.round(12 /props.views.length);
-  console.log('Cols: ', cols);
-  console.log('Length: ', props.views.length);
-  console.log(Math.round('Divided 12: ', 12 / props.views.length));
 
   var styles = StyleSheet.create({
     footerNav: {
