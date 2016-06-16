@@ -5,7 +5,7 @@ import FooterNavigation from './layout/FooterNavigation.js';
 // import Navigation from './layout/Navigation.js';
 import Panels from './layout/Panels.js';
 // import Snackbar from './layout/Snackbar.js';
-// import Tabs from './layout/Tabs.js';
+import Tabs from './layout/Tabs.js';
 // import Tooltips from './layout/Tooltips.js';
 import AreaChart from './visualization/AreaChart.js';
 import BarChart from './visualization/BarChart.js';
@@ -25,7 +25,7 @@ export {
   // Navigation,
   Panels,
   // Snackbar,
-  // Tabs,
+  Tabs,
   // Tooltips,
   AreaChart,
   BarChart,

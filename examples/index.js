@@ -2,6 +2,7 @@ import React from 'react'
 import { Cards } from './../dist/component-kit.js';
 import { Panels } from './../dist/component-kit.js';
 import { FooterNavigation } from './../dist/component-kit.js';
+import { Tabs } from './../dist/component-kit.js';
 import { BarChart } from './../dist/component-kit.js';
 import { AreaChart } from './../dist/component-kit.js';
 import { LineChart } from './../dist/component-kit.js';
@@ -197,6 +198,24 @@ var color = [
  ]
 };
 
+function ComponentOne (props) {
+  return (
+    <h1>Im Component 1</h1>
+  );
+}
+
+function ComponentTwo (props) {
+  return (
+    <h1>Im Component 2</h1>
+  );
+}
+
+function ComponentThree (props) {
+  return (
+    <h1>Im Component 3</h1>
+  );
+}
+
 function App (props) {
   return (
     <div>
@@ -279,6 +298,23 @@ function App (props) {
           <li>Brazil</li>
         </ul>
       </Panels>
+      <br />
+      <br />
+      <Tabs tabs={[
+          {
+            title: 'Component 1',
+            component: ComponentOne
+          },
+          {
+            title: 'Component 2',
+            component: ComponentTwo
+          },
+          {
+            title: 'Component 3',
+            component: ComponentThree
+          }
+        ]}
+      />
       <br />
       <br />
       <br />
