@@ -1,6 +1,7 @@
 import React from 'react'
 import { Cards } from './../dist/component-kit.js';
 import { Panels } from './../dist/component-kit.js';
+import { FooterNavigation } from './../dist/component-kit.js';
 import { BarChart } from './../dist/component-kit.js';
 import { AreaChart } from './../dist/component-kit.js';
 import { LineChart } from './../dist/component-kit.js';
@@ -221,13 +222,13 @@ function App (props) {
                 data={data3}
                 colors={color}
       />
-    <PieChart width={350}
+      <PieChart width={350}
                 height={300}
                 radius={150}
                 donut={2}
                 data={data3}
                 colors={color}
-        />
+      />
       <br />
       <ScatterPlot width={350}
                    height={300}
@@ -250,6 +251,7 @@ function App (props) {
         <p>Located two hours south of Sydney in the Southern Highlands of New South Wales, ...</p>
       </Cards>
       <br />
+      <br />
       <Cards imgURI="http://placehold.it/300x200"
              width={300}
              height={350}
@@ -269,6 +271,7 @@ function App (props) {
              ]}>
       </Cards>
       <br />
+      <br />
       <Panels title="Panel Construction">
         <ul>
           <li>Barbados</li>
@@ -276,6 +279,31 @@ function App (props) {
           <li>Brazil</li>
         </ul>
       </Panels>
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <FooterNavigation
+        views={[
+          {
+            link: 'http://google.com',
+            icon: 'ion-social-google',
+            title: 'google'
+          },
+          {
+            link: 'http://facebook.com',
+            icon: 'ion-social-facebook',
+            title: 'facebook'
+          },
+          {
+            link: 'http://twitter.com',
+            icon: 'ion-social-twitter',
+            title: 'twitter'
+          }
+        ]}
+      />
       <br />
     </div>
   );

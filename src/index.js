@@ -1,6 +1,6 @@
 import Cards from './layout/Cards.js';
 // import Chips from './layout/Chips.js';
-// import FooterNavigation from './layout/FooterNavigation.js';
+import FooterNavigation from './layout/FooterNavigation.js';
 // import Grid from './layout/Grid.js';
 // import Navigation from './layout/Navigation.js';
 import Panels from './layout/Panels.js';
@@ -20,7 +20,7 @@ import TreeMap from './visualization/TreeMap.js';
 export {
   Cards,
   // Chips,
-  // FooterNavigation,
+  FooterNavigation,
   // Grid,
   // Navigation,
   Panels,
