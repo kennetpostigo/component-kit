@@ -5,7 +5,7 @@ function Cards (props) {
   const styles = StyleSheet.create({
     cards: {
       boxShadow: "0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)",
-      width: props.width || 200,
+      width: props.width || 300,
       height: props.height || 350,
     },
     img: {
@@ -46,7 +46,7 @@ function Cards (props) {
   });
 
   return (
-    <div className={css(styles.cards)}>
+    <div className={`Cards ${css(styles.cards)}`}>
       <img src={props.imgURI} className={css(styles.img)}/>
       <div className={css(styles.fill)}>
         {

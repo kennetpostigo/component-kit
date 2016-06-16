@@ -24,6 +24,7 @@ class AreaChart extends React.Component {
         .orient('left');
 
     var area = d3.svg.area()
+      .interpolate("monotone")
       .x((d) => x(d.x))
       .y0(innerH)
       .y1((d) => y(d.y));
@@ -53,7 +54,7 @@ class AreaChart extends React.Component {
         .attr('y', 6)
         .attr('dy', '.71em')
         .style('text-anchor', 'end')
-        .text('user specified');
+        .text('y-axis');
 
     return chart.node().toReact();
   }

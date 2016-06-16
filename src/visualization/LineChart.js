@@ -18,13 +18,20 @@ class LineChart extends React.Component {
 
     var xAxis = d3.svg.axis()
         .scale(x)
-        .orient('bottom');
+        .orient('bottom')
+        .innerTickSize(-innerH)
+        .outerTickSize(0)
+        .tickPadding(10);
 
     var yAxis = d3.svg.axis()
         .scale(y)
-        .orient('left');
+        .orient('left')
+        .innerTickSize(-innerW)
+        .outerTickSize(0)
+        .tickPadding(10);
 
     var line = d3.svg.line()
+        .interpolate("monotone")
         .x((d) => x(d.x))
         .y((d) => y(d.y));
 
@@ -40,10 +47,24 @@ class LineChart extends React.Component {
         .attr('class', 'line')
         .attr('d', line);
 
+    g.selectAll('circle')
+      .data(data)
+      .enter().append('circle')
+      .attr('class', 'circle')
+      .attr('cx', (d) => x(d.x))
+      .attr('cy', (d) => y(d.y))
+      .attr('r', 3);
+
     g.append("g")
         .attr('class', 'x axis')
         .attr('transform', `translate(0, ${innerH})`)
-        .call(xAxis);
+        .call(xAxis)
+        .append('text')
+        .attr('class', 'label')
+        .attr('x', innerW)
+        .attr('y', -6)
+        .style('text-anchor', 'end')
+        .text('x-axis');
 
     g.append('g')
         .attr('class', 'y axis')
@@ -53,7 +74,7 @@ class LineChart extends React.Component {
         .attr('y', 6)
         .attr('dy', '.71em')
         .style('text-anchor', 'end')
-        .text('Price ($)');
+        .text('y-axis');
 
     return chart.node().toReact();
   }

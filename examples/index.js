@@ -1,5 +1,6 @@
 import React from 'react'
 import { Cards } from './../dist/component-kit.js';
+import { Panels } from './../dist/component-kit.js';
 import { BarChart } from './../dist/component-kit.js';
 import { AreaChart } from './../dist/component-kit.js';
 import { LineChart } from './../dist/component-kit.js';
@@ -7,6 +8,7 @@ import { PieChart } from './../dist/component-kit.js';
 import { ScatterPlot } from './../dist/component-kit.js';
 import { TreeMap } from './../dist/component-kit.js';
 import { render } from 'react-dom';
+import './../src/styles/bootstrap.css';
 
 var data = [
   {name: 'A', value: .08167},
@@ -198,42 +200,42 @@ function App (props) {
   return (
     <div>
       <p>Examples</p>
-      <BarChart width={250}
-                height={200}
+      <BarChart width={350}
+                height={300}
                 data={data}
       />
       <br />
-      <AreaChart width={250}
-                 height={200}
+      <AreaChart width={350}
+                 height={300}
                  data={data2}
       />
       <br />
-      <LineChart width={250}
-                 height={200}
+      <LineChart width={350}
+                 height={300}
                  data={data2}
       />
       <br />
-      <PieChart width={250}
-                height={200}
-                radius={100}
+      <PieChart width={350}
+                height={300}
+                radius={150}
                 data={data3}
                 colors={color}
       />
-      <PieChart width={250}
-                height={200}
-                radius={100}
+    <PieChart width={350}
+                height={300}
+                radius={150}
                 donut={2}
                 data={data3}
                 colors={color}
         />
       <br />
-      <ScatterPlot width={250}
-                   height={200}
+      <ScatterPlot width={350}
+                   height={300}
                    data={data4}
        />
       <br />
-      <TreeMap width={250}
-               height={200}
+      <TreeMap width={350}
+               height={300}
                root={treeMapData}
       />
       <br />
@@ -266,6 +268,15 @@ function App (props) {
                }
              ]}>
       </Cards>
+      <br />
+      <Panels title="Panel Construction">
+        <ul>
+          <li>Barbados</li>
+          <li>Bolivia</li>
+          <li>Brazil</li>
+        </ul>
+      </Panels>
+      <br />
     </div>
   );
 }

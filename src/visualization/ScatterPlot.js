@@ -42,7 +42,7 @@ class ScatterPlot extends React.Component {
       .attr('x', innerW)
       .attr('y', -6)
       .style('text-anchor', 'end')
-      .text('X (value)');
+      .text('x-axis');
 
     g.append('g')
       .attr('class', 'label')
@@ -53,7 +53,7 @@ class ScatterPlot extends React.Component {
       .attr('y', 6)
       .attr('dy', '.71em')
       .style('text-anchor', 'end')
-      .text('Y (value)');
+      .text('y-axis');
 
     g.selectAll('.dot')
       .data(data)

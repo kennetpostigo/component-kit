@@ -3,7 +3,7 @@ import Cards from './layout/Cards.js';
 // import FooterNavigation from './layout/FooterNavigation.js';
 // import Grid from './layout/Grid.js';
 // import Navigation from './layout/Navigation.js';
-// import Panels from './layout/Panels.js';
+import Panels from './layout/Panels.js';
 // import Snackbar from './layout/Snackbar.js';
 // import Tabs from './layout/Tabs.js';
 // import Tooltips from './layout/Tooltips.js';
@@ -23,7 +23,7 @@ export {
   // FooterNavigation,
   // Grid,
   // Navigation,
-  // Panels,
+  Panels,
   // Snackbar,
   // Tabs,
   // Tooltips,
@@ -35,5 +35,5 @@ export {
   // RadarChart,
   // RadialBarChart,
   ScatterPlot,
-  TreeMap
+  TreeMap,
 }
