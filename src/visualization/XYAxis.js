@@ -14,8 +14,10 @@ class XYAxis extends React.Component {
     height = (xyConfig.height) ? xyConfig.height : this.props.height || 300,
     innerW = width - 60,
     innerH = height - 60,
-    defaultOrdinal = (xyConfig.defaultOrdinal) ? xyConfig.defaultOrdinal : this.props.defaultOrdinal,
-    scaleTypes = (defaultOrdinal) ? determineScales(data, xDataKey, yDataKey, defaultOrdinal) : determineScales(data, xDataKey, yDataKey);
+    defaultOrdinal = (xyConfig.defaultOrdinal) ? xyConfig.defaultOrdinal
+                                               : this.props.defaultOrdinal,
+    scaleTypes = (defaultOrdinal) ? determineScales(data, xDataKey, yDataKey, defaultOrdinal)
+                                  : determineScales(data, xDataKey, yDataKey);
 
     if (scaleTypes.x === 'linear') {
       xScale = d3.scale.linear()
@@ -24,7 +26,7 @@ class XYAxis extends React.Component {
     } else {
       xScale = d3.scale.ordinal()
           .domain(data.map((d) => d[xDataKey]))
-          .rangeRoundBands([0, innerW], .1);
+          .rangeRoundBands([0, innerW], .2);
     }
 
     if (scaleTypes.y === 'linear') {
@@ -33,10 +35,9 @@ class XYAxis extends React.Component {
           .range([innerH, 0]);
     } else {
       yScale = d3.scale.ordinal()
-           .domain([0, d3.max(data, (d) => d[yDataKey])])
-           .range([0, innerH], .1);
+           .domain(data.map((d) => d[yDataKey]))
+           .rangeRoundBands([0, innerH], 0);
     }
-
     return {xScale, yScale, innerH, innerW, scaleTypes};
   }
 
