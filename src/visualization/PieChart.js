@@ -4,10 +4,17 @@ import ReactFauxDOM from 'react-faux-dom';
 
 class PieChart extends React.Component {
   render () {
-    const {width, height, radius, colors, data, donut} = this.props;
-    const colorFill = (donut) ? radius - radius / donut : 0;
-    var color = d3.scale.ordinal()
-        .range(colors);
+    // const {width, height, radius, colors, data, donut} = this.props;
+    const data = this.props.data,
+          width= this.props.width || 350,
+          height = this.props.height || 300,
+          radius = this.props.radius,
+          donut = this.props.donut,
+          colorFill = (donut) ? radius - radius / donut : 0,
+          colors = this.props.colors || ["#e1eef6","#ff5f2e","#fcbe32","#004e66",
+          "#ff7473","#ffc952","#47b8e0","#34314c","#47b8e0","#47b8e0"],
+          color = d3.scale.ordinal()
+            .range(colors);
 
     var arc = d3.svg.arc()
         .outerRadius(radius - 10)
@@ -22,6 +29,7 @@ class PieChart extends React.Component {
         .value((d) => d.y);
 
     var chart = d3.select(ReactFauxDOM.createElement('svg'))
+        .attr('class', 'PieChart')
         .attr('width', width)
         .attr('height', height)
 
