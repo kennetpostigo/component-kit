@@ -4,66 +4,56 @@ import ReactFauxDOM from 'react-faux-dom';
 
 class AreaChart extends React.Component {
   render () {
-    const {data, width, height} = this.props;
-    const innerW = width - 60,
-          innerH = height - 60;
-    var x = d3.scale.linear()
-        .domain(d3.extent(data, (d) => d.x))
-        .range([0, innerW]);
-
-    var y = d3.scale.linear()
-        .domain([0, d3.max(data, (d) => d.y)])
-        .range([innerH, 0]);
-
-    var xAxis = d3.svg.axis()
-        .scale(x)
-        .orient('bottom');
-
-    var yAxis = d3.svg.axis()
-        .scale(y)
-        .orient('left');
+    const data = this.props.data,
+          xDataKey = this.props.xDataKey,
+          yDataKey = this.props.yDataKey,
+          dataKey = this.props.dataKey || yDataKey,
+          width= this.props.width || 350,
+          height = this.props.height || 300,
+          innerW = width - 60,
+          innerH = height - 60,
+          xScale = this.props.xScale,
+          yScale = this.props.yScale,
+          color = this.props.color || '#ff7473',
+          colorOpacity = this.props.colorOpacity || 1;
 
     var area = d3.svg.area()
       .interpolate("monotone")
-      .x((d) => x(d.x))
+      .x((d) => xScale(d[xDataKey]))
       .y0(innerH)
-      .y1((d) => y(d.y));
+      .y1((d) => yScale(d[dataKey]));
 
-    var chart = d3.select(ReactFauxDOM.createElement('svg'))
+    var planeElement = ReactFauxDOM.createElement('svg')
+    var plane = d3.select(planeElement)
+        .attr('class', 'AreaChart')
         .attr('width', width)
         .attr('height', height)
+        .style('z-index', this.props.zIndex);
 
-    var g = chart.append('g')
-         .attr('transform', `translate(50, 20)`);
+    var g = plane.append('g')
+        .attr('class', 'plane')
+        .attr('width', innerW)
+        .attr('height', innerH)
+        .attr('transform', `translate(50, 20)`);
 
     g.append('path')
           .datum(data)
           .attr('class', 'area')
-          .attr('d', area);
+          .attr('d', area)
+          .style('fill', color)
+          .style('fill-opacity', colorOpacity);
 
-    g.append("g")
-        .attr('class', 'x axis')
-        .attr('transform', `translate(0, ${innerH})`)
-        .call(xAxis);
-
-    g.append("g")
-        .attr('class', 'y axis')
-        .call(yAxis)
-      .append('text')
-        .attr('transform', 'rotate(-90)')
-        .attr('y', 6)
-        .attr('dy', '.71em')
-        .style('text-anchor', 'end')
-        .text('y-axis');
-
-    return chart.node().toReact();
+    return plane.node().toReact();
   }
 }
 
 AreaChart.propTypes = {
   width: React.PropTypes.number,
   height: React.PropTypes.number,
-  data: React.PropTypes.array
+  data: React.PropTypes.array,
+  dataKey: React.PropTypes.string,
+  color: React.PropTypes.any,
+  colorOpacity: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number])
 }
 
 export default AreaChart;

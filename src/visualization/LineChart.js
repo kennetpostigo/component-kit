@@ -4,86 +4,68 @@ import ReactFauxDOM from 'react-faux-dom';
 
 class LineChart extends React.Component {
   render () {
-    const { data, width, height } = this.props;
-    const innerW = width - 60,
-          innerH = height - 60;
+    const data = this.props.data,
+          xDataKey = this.props.xDataKey,
+          yDataKey = this.props.yDataKey,
+          dataKey = this.props.dataKey || yDataKey,
+          width= this.props.width || 350,
+          height = this.props.height || 300,
+          innerW = width - 60,
+          innerH = height - 60,
+          xScale = this.props.xScale,
+          yScale = this.props.yScale,
+          color = this.props.color || '#47b8e0',
+          pointBorderColor = this.props.pointBorderColor || '#ffc952',
+          pointColor = this.props.pointColor || '#fff';
 
-    var x = d3.scale.linear()
-        .domain(d3.extent(data, (d) => d.x))
-        .range([0, innerW]);
-
-    var y = d3.scale.linear()
-        .domain([0, d3.max(data, (d) => d.y)])
-        .range([innerH, 0]);
-
-    var xAxis = d3.svg.axis()
-        .scale(x)
-        .orient('bottom')
-        .innerTickSize(-innerH)
-        .outerTickSize(0)
-        .tickPadding(10);
-
-    var yAxis = d3.svg.axis()
-        .scale(y)
-        .orient('left')
-        .innerTickSize(-innerW)
-        .outerTickSize(0)
-        .tickPadding(10);
 
     var line = d3.svg.line()
         .interpolate("monotone")
-        .x((d) => x(d.x))
-        .y((d) => y(d.y));
+        .x((d) => xScale(d[xDataKey]))
+        .y((d) => yScale(d[dataKey]));
 
-    var chart = d3.select(ReactFauxDOM.createElement('svg'))
+    var planeElement = ReactFauxDOM.createElement('svg')
+    var plane = d3.select(planeElement)
+        .attr('class', 'LineChart')
         .attr('width', width)
-        .attr('height', height);
+        .attr('height', height)
+        .style('z-index', this.props.zIndex);
 
-    var g = chart.append('g')
+    var g = plane.append('g')
+        .attr('class', 'plane')
+        .attr('width', innerW)
+        .attr('height', innerH)
         .attr('transform', `translate(50, 20)`);
 
     g.append('path')
         .datum(data)
         .attr('class', 'line')
-        .attr('d', line);
+        .attr('d', line)
+        .style('stroke', color);
 
     g.selectAll('circle')
       .data(data)
       .enter().append('circle')
       .attr('class', 'circle')
-      .attr('cx', (d) => x(d.x))
-      .attr('cy', (d) => y(d.y))
-      .attr('r', 3);
+      .attr('cx', (d) => xScale(d[xDataKey]))
+      .attr('cy', (d) => yScale(d[dataKey]))
+      .attr('r', 3)
+      .style('fill', pointColor)
+      .style('stroke', pointBorderColor);
 
-    g.append("g")
-        .attr('class', 'x axis')
-        .attr('transform', `translate(0, ${innerH})`)
-        .call(xAxis)
-        .append('text')
-        .attr('class', 'label')
-        .attr('x', innerW)
-        .attr('y', -6)
-        .style('text-anchor', 'end')
-        .text('x-axis');
-
-    g.append('g')
-        .attr('class', 'y axis')
-        .call(yAxis)
-        .append('text')
-        .attr('transform', 'rotate(-90)')
-        .attr('y', 6)
-        .attr('dy', '.71em')
-        .style('text-anchor', 'end')
-        .text('y-axis');
-
-    return chart.node().toReact();
+    return plane.node().toReact();
   }
 }
 
 LineChart.propTypes = {
   width: React.PropTypes.number,
   height: React.PropTypes.number,
-  data: React.PropTypes.array
+  data: React.PropTypes.array,
+  dataPoints: React.PropTypes.bool,
+  dataKey: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]),
+  color: React.PropTypes.string,
+  pointColor: React.PropTypes.string,
+  pointBorderColor: React.PropTypes.string
 }
 
 export default LineChart;
