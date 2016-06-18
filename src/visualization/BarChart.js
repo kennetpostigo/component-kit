@@ -4,52 +4,51 @@ import ReactFauxDOM from 'react-faux-dom';
 
 class BarChart extends React.Component {
   render () {
-    const {data, width, height} = this.props;
-    const innerW = width - 60,
-          innerH = height - 60;
+    const data = this.props.data,
+          xDataKey = this.props.xDataKey,
+          yDataKey = this.props.yDataKey,
+          dataKey = this.props.dataKey || yDataKey,
+          width= this.props.width || 350,
+          height = this.props.height || 300,
+          innerW = width - 60,
+          innerH = height - 60,
+          xScale = this.props.xScale,
+          yScale = this.props.yScale,
+          scaleTypes = this.props.scaleTypes;
 
-    var x = d3.scale.ordinal()
-        .domain(data.map((d) => d.name))
-        .rangeRoundBands([0, innerW], .1);
+    var planeElement = ReactFauxDOM.createElement('svg')
+    var plane = d3.select(planeElement)
+        .attr('class', 'BarChart')
+        .attr('width', width)
+        .attr('height', height);
 
-    var y = d3.scale.linear()
-        .domain([0, d3.max(data, (d) => d.value)])
-        .range([innerH, 0]);
+    var g = plane.append('g')
+        .attr('class', 'plane')
+        .attr('width', innerW)
+        .attr('height', innerH)
+        .attr('transform', `translate(50, 20)`);
+if (scaleTypes.x === 'ordinal') {
+  g.selectAll('.bar')
+    .data(data)
+    .enter().append('rect')
+    .attr('class', 'bar')
+    .attr('x', (d) => xScale(d[xDataKey]))
+    .attr('y', (d) => yScale(d[dataKey]))
+    .attr('height', (d) => innerH - yScale(d[dataKey]))
+    .attr('width', xScale.rangeBand());
+} else {
+  g.selectAll('.bar')
+    .data(data)
+    .enter().append('rect')
+    .attr('class', 'bar')
+    .attr('x', (d) => xScale(d[xDataKey]))
+    .attr('y', (d, i) => yScale.rangeBand(d[dataKey]) * i)
+    .attr('height', (d, i) => innerH - yScale(d[dataKey]))
+    .attr('width', '7');
+}
+    // console.log('lin yScale: ', )
 
-    var xAxis = d3.svg.axis()
-        .scale(x)
-        .orient('bottom');
-
-    var yAxis = d3.svg.axis()
-        .scale(y)
-        .orient('left');
-
-    var chart = d3.select(ReactFauxDOM.createElement('svg'))
-      .attr('width', width)
-      .attr('height', height)
-
-    var g = chart.append('g')
-         .attr('transform', `translate(${40}, ${20})`);
-
-    g.append('g')
-         .attr('class', 'x axis')
-         .attr('transform', `translate(0, ${innerH})`)
-         .call(xAxis)
-
-    g.append('g')
-         .attr('class', 'y axis')
-         .call(yAxis);
-
-    g.selectAll('.bar')
-      .data(data)
-      .enter().append('rect')
-      .attr('class', 'bar')
-      .attr('x', (d) => x(d.name))
-      .attr('y', (d) => y(d.value))
-      .attr('height', (d) => innerH - y(d.value))
-      .attr('width', x.rangeBand());
-
-    return chart.node().toReact();
+    return plane.node().toReact();
   }
 }
 
