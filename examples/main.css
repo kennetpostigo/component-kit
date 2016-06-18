@@ -1,4 +1,20 @@
+.AreaChart, .LineChart, .ScatterPlot, .BarChart{
+  /*z-index: 10;*/
+  position: absolute;
+}
+.plane{
+  display: inline-block;
+}
 /* Chart Start*/
+.XYAxis{
+  z-index:1;
+  position: relative;
+}
+
+.XYC{
+  display: inline-block;
+}
+
 .axis path,
 .axis line{
   fill: none;
@@ -18,7 +34,7 @@
 .tick line{
   opacity: 0.2;
   stroke: rgb(102, 102, 102);
-  stroke-dasharray: 3,3;
+  /*stroke-dasharray: 3,3;*/
 }
 
 /* Chart  End*/
@@ -34,12 +50,9 @@
 
 /* AreaChart Start */
 .area {
-  fill: rgb(136, 132, 216);
-  fill-opacity: 0.6;
   stroke-linecap:round;
   stroke-linehoin: round;
 }
-
 /* AreaChart End */
 
 /* LineChart Start */
@@ -51,22 +64,25 @@
 
 .line{
   fill: none;
-  stroke: rgb(136, 132, 216);
+  stroke: #ffc952;
   stroke-width: 2px;
 }
 /* LineChart End */
 
 /* PieChart Start */
+.PieChart{
+  display:inline-block;
+}
 .arc text {
   font: 10px sans-serif;
   fill: #fff;
   text-anchor: middle;
 }
 
-.area {
+/*.area {
   fill: rgb(136, 132, 216);
   stroke-width: 0;
-}
+}*/
 
 /* PieChart End */
 
@@ -81,3 +97,10 @@
 }
 
 /* TreeMap End */
+
+
+/* Radar */
+  .RadarChart{
+    display: block;
+  }
+/* Radar End */
