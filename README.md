@@ -38,7 +38,7 @@ taking requests for charts that developers want.
 Make sure to import the styles for the components in you HTML file, or with
 webpack.
 ```html
-<link rel="stylesheet" href="/node_modules/src/styles/main.css">
+<link rel="stylesheet" href="/node_modules/component-kit/src/styles/main.css">
 ```
 ```js
   import {
