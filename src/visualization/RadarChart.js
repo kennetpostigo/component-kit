@@ -8,20 +8,19 @@ class RadarChart extends React.Component {
     const width = this.props.width || 350,
           height = this.props.height || 300,
           data = this.props.data,
-          dataKey = this.props.dataKey,
+          rangeKey = this.props.rangeKey,
           labelKey = this.props.labelKey,
           barHeight = height / 2 - 40,
-          tickValues = data.map((d) => d[dataKey]),
+          tickValues = data.map((d) => d[rangeKey]),
           largestTick = Math.max(...tickValues),
-          tickSpace = getDividends(largestTick, 6),
-          color = this.props.color;
+          tickSpace = getDividends(largestTick, 6);
 
-    var chart = d3.select(ReactFauxDOM.createElement('svg'))
+    var plane = d3.select(ReactFauxDOM.createElement('svg'))
         .attr('class', 'RadarChart')
         .attr('width', width)
         .attr('height', height);
 
-    var g = chart.append('g')
+    var g = plane.append('g')
       .attr('transform', `translate(${width / 2}, ${height / 2} )`);
 
     var numBars = data.length;
@@ -32,7 +31,7 @@ class RadarChart extends React.Component {
 
     var line = d3.svg.line.radial()
       .interpolate('linear-closed')
-      .radius((d) => radius(d[dataKey]))
+      .radius((d) => radius(d[rangeKey]))
       .angle((d,i) => (i * 2 * Math.PI / numBars));
 
     var area = d3.svg.area.radial()
@@ -50,7 +49,7 @@ class RadarChart extends React.Component {
       .attr('class', 'tickPath')
       .attr('d', function(d) {
         var tickArray = [], i;
-        for (i = 0; i < numBars; i++) tickArray.push({[dataKey]: d});
+        for (i = 0; i < numBars; i++) tickArray.push({[rangeKey]: d});
         return area(tickArray);
       })
       .style('fill', 'none')
@@ -94,18 +93,30 @@ class RadarChart extends React.Component {
       .style('fill', '#CFCCCC')
       .text((d) => d[labelKey]);
 
-    var layer = g.selectAll('.layer')
-      .data([data]).enter()
-      .append('path')
-      .attr('class', 'layer')
-      .attr('d', (d) => area(d))
-      .style('fill', color)
-      .style('fill-opacity', .7)
-      .style('stroke', '#CFCCCC')
-      .style('stroke-width', '0.5px')
-      .style('font-size', 12);
+    // var layer = g.selectAll('.layer')
+    //   .data([data]).enter()
+    //   .append('path')
+    //   .attr('class', 'layer')
+    //   .attr('d', (d) => area(d))
+    //   .style('fill', color)
+    //   .style('fill-opacity', .7)
+    //   .style('stroke', '#CFCCCC')
+    //   .style('stroke-width', '0.5px')
+    //   .style('font-size', 12);
 
-    return chart.node().toReact();
+      return (
+        <div className="XYC">
+          {
+            (typeof this.props.children !== 'array') ?
+                 React.Children.map(this.props.children, (child, key) => {
+                  return React.cloneElement(child, { zIndex: key + 1, data, rangeKey, labelKey, width, height, largestTick, numBars, barHeight});
+                })
+              :
+                React.cloneElement(this.props.children, { zIndex: 10 , data, rangeKey, labelKey, width, height, largestTick, numBars, barHeight})
+          }
+          {plane.node().toReact()}
+        </div>
+      );
   }
 }
 
@@ -114,9 +125,8 @@ RadarChart.propTypes = {
   height: React.PropTypes.number,
   radius: React.PropTypes.number,
   data: React.PropTypes.array,
-  dataKey: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]),
-  labelKey: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]),
-  color: React.PropTypes.string
+  rangeKey: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]),
+  labelKey: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number])
 };
 
 export default RadarChart;
