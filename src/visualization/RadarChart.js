@@ -1,13 +1,20 @@
 import React from 'react';
 import d3 from 'd3';
 import ReactFauxDOM from 'react-faux-dom';
+import { getDividends } from './../utils/Dividends.js';
 
 class RadarChart extends React.Component {
   render () {
-    const {width, height, data} = this.props,
-          barHeight = height / 2 - 40;
-
-    var tickValues = [4,8,12,16,20];
+    const width = this.props.width || 350,
+          height = this.props.height || 300,
+          data = this.props.data,
+          dataKey = this.props.dataKey,
+          labelKey = this.props.labelKey,
+          barHeight = height / 2 - 40,
+          tickValues = data.map((d) => d[dataKey]),
+          largestTick = Math.max(...tickValues),
+          tickSpace = getDividends(largestTick, 6),
+          color = this.props.color;
 
     var chart = d3.select(ReactFauxDOM.createElement('svg'))
         .attr('class', 'RadarChart')
@@ -17,15 +24,15 @@ class RadarChart extends React.Component {
     var g = chart.append('g')
       .attr('transform', `translate(${width / 2}, ${height / 2} )`);
 
-    var numBars = data.data.length;
+    var numBars = data.length;
 
     var radius = d3.scale.linear()
-        .domain([0,20])
+        .domain([0,largestTick])
         .range([0, barHeight]);
 
     var line = d3.svg.line.radial()
       .interpolate('linear-closed')
-      .radius((d) => radius(d.count))
+      .radius((d) => radius(d[dataKey]))
       .angle((d,i) => (i * 2 * Math.PI / numBars));
 
     var area = d3.svg.area.radial()
@@ -37,21 +44,31 @@ class RadarChart extends React.Component {
     tickValues.sort((a,b) => b - a);
 
     var tickPath = g.selectAll('.tickPath')
-        .data(tickValues).enter()
-      .append('path')
-        .attr('class', 'tickPath')
-        .attr('d', function(d) {
-          var tickArray = [], i;
-          for (i = 0; i < numBars; i++) tickArray.push({count : d});
-          return area(tickArray);
-        })
-        .style('fill', 'none')
-        .style('stroke', (d,i) => (i === 0) ? 'rgb(102, 102, 102)' : 'rgb(102, 102, 102)')
-        .style('stroke-width', (d,i) => (i === 0) ? '.8px' : '.5px');
+        .data(tickSpace).enter()
+
+    tickPath.append('path')
+      .attr('class', 'tickPath')
+      .attr('d', function(d) {
+        var tickArray = [], i;
+        for (i = 0; i < numBars; i++) tickArray.push({[dataKey]: d});
+        return area(tickArray);
+      })
+      .style('fill', 'none')
+      .style('stroke', (d,i) => (i === 0) ? 'rgb(102, 102, 102)' : 'rgb(102, 102, 102)')
+      .style('stroke-width', (d,i) => (i === 0) ? '.8px' : '.5px');
+
+    g.selectAll('text')
+        .data(tickSpace).enter()
+        .append('text')
+        .text((d) => d)
+        .attr('y', (d) => radius(-d) + 20)
+        .attr('x', + 3)
+        .style('font-size', 12)
+        .style('fill', '#CFCCCC');
 
     var lines = g.selectAll('line')
-        .data(data.data)
-      .enter().append('g')
+        .data(data)
+        .enter().append('g')
         .attr('class', 'lines');
 
     lines.append('line')
@@ -62,8 +79,8 @@ class RadarChart extends React.Component {
 
     lines.append('text')
       .attr('class', 'names')
-      .attr('x', (d, i) => (barHeight + 15) * Math.sin((i * 2 * Math.PI / numBars)))
-      .attr('y', (d, i) => -(barHeight + 15) * Math.cos((i * 2 * Math.PI / numBars)))
+      .attr('x', (d, i) => (barHeight + 13) * Math.sin((i * 2 * Math.PI / numBars)))
+      .attr('y', (d, i) => -(barHeight + 13) * Math.cos((i * 2 * Math.PI / numBars)))
       .attr('text-anchor', function(d,i) {
       if (i === 0 || i === numBars / 2) {
           return 'middle';
@@ -74,20 +91,32 @@ class RadarChart extends React.Component {
         }
       })
       .style('font-weight', 'bold')
-      .style('fill', 'rgb(171, 166, 166)')
-      .text((d) => d.skill);
+      .style('fill', '#CFCCCC')
+      .text((d) => d[labelKey]);
 
     var layer = g.selectAll('.layer')
       .data([data]).enter()
       .append('path')
       .attr('class', 'layer')
-      .attr('d', (d) => area(d.data))
-      .attr('fill', 'rgba(88, 201, 185, 0.7)')
-      .attr('stroke', 'rgb(102, 102, 102)')
-      .attr('stroke-width', '0.5px');
+      .attr('d', (d) => area(d))
+      .style('fill', color)
+      .style('fill-opacity', .7)
+      .style('stroke', '#CFCCCC')
+      .style('stroke-width', '0.5px')
+      .style('font-size', 12);
 
     return chart.node().toReact();
   }
 }
+
+RadarChart.propTypes = {
+  width: React.PropTypes.number,
+  height: React.PropTypes.number,
+  radius: React.PropTypes.number,
+  data: React.PropTypes.array,
+  dataKey: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]),
+  labelKey: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]),
+  color: React.PropTypes.string
+};
 
 export default RadarChart;
