@@ -11,18 +11,18 @@ allows you to create charts individually as well as compose them together.
 
 ## How it Works
 Component-Kit under the hood is powered by React, D3, and React-Faux-DOM. If
-you're interested in knowing why I choose these three to power this library keep
+you're interested in knowing why I chose these three to power this library keep
 reading, otherwise scroll down to the examples. As I began building this Library
 I realized that both React and D3 want to be in charge of rendering and updating
 the charting components. I knew I wanted to leverage React's efficient rendering
-capabilities, but I also wanted to be able to use D3 rich manipulation and selection
+capabilities, but I also wanted to be able to use D3's rich manipulation and selection
 functionality. After researching for a little while I discovered React-Faux-DOM,
 a library that provides a light-weight object-like DOM that is bare enough to
 support all of D3 API and then can be converted to react elements. This gave me
 a few benefits. I get to use D3 like anyone normally would without react. Second,
-since react is in charge or rendering and updating the viewI don't have to think
+since react is in charge or rendering and updating the view I don't have to think
 about how the charts will react to updates in data, essentially can disregard for
-the most part D3's General Update Pattern.
+the most part D3's General Update Pattern as React will update them accordingly.
 
 ## The State of Component-Kit and Whats Next
 I've just recently began working on component-kit, so there are a few charting
@@ -35,12 +35,19 @@ components that are included in the library are also finished. I am also open to
 taking requests for charts that developers want.
 
 ## examples
-Make sure to import the styles for the components.
+Make sure to import the styles for the components in you HTML file, or with
+webpack.
 ```html
 <link rel="stylesheet" href="/node_modules/src/styles/main.css">
 ```
 ```js
-  import { XYAxis, LineChart, AreaChart, BarChart } from 'component-kit';
+  import {
+    XYAxis,
+    LineChart,
+    AreaChart,
+    BarChart,
+    PieChart
+  } from 'component-kit';
 
   var data = [
     {x: 5,  y: 63584, l: 62573, a: 62573},
@@ -106,7 +113,7 @@ Make sure to import the styles for the components.
           yLabel={'y'}
           gridLines={'solid'}>
     <BarChart/>
-
+  </XYAxis>
 ```
 ## License
 MIT
