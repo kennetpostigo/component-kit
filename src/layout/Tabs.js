@@ -16,7 +16,7 @@ class Tabs extends React.Component {
     const styles = StyleSheet.create({
       tabs: {
         width: this.props.width || 300,
-        height: this.props.width || 500,
+        height: this.props.height || 500,
         backgroundColor: this.props.backGroundColor || '#fff',
         boxShadow: '0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)'
       },
