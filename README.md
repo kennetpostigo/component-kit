@@ -22,13 +22,13 @@ the most part D3's General Update Pattern as React will update them accordingly.
 
 ## The State of Component-Kit and Whats Next
 I've just recently began working on component-kit, so there are a few charting
-component that are finished (XYAxis, LineChart, AreaChart, BarChart, PieChart).
-As of now you can compose the finished charts together to visualize the same data-set
-in different ways on the same axes, as well as compose different data sets on the
-same axes. What I need to finish is the RadarChart, RadialBarChart, and TreeMap.
-Also, I will be adding animation to the charts with `react-motion`. Most of the Layout
-components that are included in the library are also finished. I am also open to
-taking requests for charts that developers want.
+component that are finished (XYAxis, LineChart, AreaChart, BarChart, PieChart,
+RadarChart, ScatterPlot). As of now you can compose the finished charts together
+to visualize the same data-set in different ways on the same axes, as well as
+compose different data sets on the same axes. What I need to finish is the RadialBarChart,
+and TreeMap. Also, I will be adding animation to the charts with `react-motion`.
+Most of the Layout components that are included in the library are also finished.
+I am also open to taking requests for charts that developers want.
 
 ## Install
 ```bash
@@ -36,8 +36,10 @@ npm install --save component-kit
 ```
 
 ## examples
-Make sure to import the styles for the components in you HTML file, or with
-webpack.
+Make sure to import the styles for the UI/Layout Portion of `component-kit`. The charting
+part of `component-kit` doesn't require the css, but the layout components require it to render properly.
+It is essentially just Bootstraps grid system. So if you have bootstrap already on your project
+you don't need the css from `component-kit`.
 ```html
 <link rel="stylesheet" href="/node_modules/component-kit/src/styles/main.css">
 ```
