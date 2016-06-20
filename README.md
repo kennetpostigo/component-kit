@@ -1,5 +1,7 @@
-# Component-Kit
-> UI-Kit Made to Rapidly Create Data-Driven Dashboards
+<p align="center">
+  <img align="center" src="component-kit.png" height="250"/>
+</p>
+> UI-Kit for Rapidly Creating Dashboards
 
 I made component-kit a project that mixes both UI and Charting Components. This
 makes it easier to get a dashboard up and running in a few minutes cake. This Library
@@ -28,7 +30,7 @@ to visualize the same data-set in different ways on the same axes, as well as
 compose different data sets on the same axes. What I need to finish is the RadialBarChart,
 and TreeMap. Also, I will be adding animation to the charts with `react-motion`.
 Most of the Layout components that are included in the library are also finished.
-I am also open to taking requests for charts that developers want.
+I am also open to taking requests for charts that developers want. Big thanks to @alaingalvan for creating the logo and brand.
 
 ## Install
 ```bash
