@@ -41,8 +41,6 @@ class TreeMap extends React.Component {
         .style('text-indent', 2)
         .text((d) => (d.children) ? null : d.name);
 
-
-
     return chart.node().toReact();
   }
 }
