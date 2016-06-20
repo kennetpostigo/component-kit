@@ -14,38 +14,48 @@ class BarChart extends React.Component {
           innerH = height - 60,
           xScale = this.props.xScale,
           yScale = this.props.yScale,
-          scaleTypes = this.props.scaleTypes;
+          scaleTypes = this.props.scaleTypes,
+          color = this.props.color || 'rgb(136, 132, 216)',
+          colorOpacity = this.props.colorOpacity || 0.6;
 
     var planeElement = ReactFauxDOM.createElement('svg')
     var plane = d3.select(planeElement)
         .attr('class', 'BarChart')
         .attr('width', width)
-        .attr('height', height);
+        .attr('height', height)
+        .style('z-index', this.props.zIndex)
+        .style('position', 'absolute');
 
     var g = plane.append('g')
         .attr('class', 'plane')
         .attr('width', innerW)
         .attr('height', innerH)
-        .attr('transform', `translate(50, 20)`);
-if (scaleTypes.x === 'ordinal') {
-  g.selectAll('.bar')
-    .data(data)
-    .enter().append('rect')
-    .attr('class', 'bar')
-    .attr('x', (d) => xScale(d[xDataKey]))
-    .attr('y', (d) => yScale(d[dataKey]))
-    .attr('height', (d) => innerH - yScale(d[dataKey]))
-    .attr('width', xScale.rangeBand());
-} else {
-  g.selectAll('.bar')
-    .data(data)
-    .enter().append('rect')
-    .attr('class', 'bar')
-    .attr('x', (d) => xScale(d[xDataKey]))
-    .attr('y', (d, i) => yScale.rangeBand(d[dataKey]) * i)
-    .attr('height', (d, i) => innerH - yScale(d[dataKey]))
-    .attr('width', '7');
-}
+        .attr('transform', `translate(50, 20)`)
+        .style('display', 'inline-block');
+
+    if (scaleTypes.x === 'ordinal') {
+      g.selectAll('.bar')
+        .data(data)
+        .enter().append('rect')
+        .attr('class', 'bar')
+        .attr('x', (d) => xScale(d[xDataKey]))
+        .attr('y', (d) => yScale(d[dataKey]))
+        .attr('height', (d) => innerH - yScale(d[dataKey]))
+        .attr('width', xScale.rangeBand())
+        .style('fill', color)
+        .style('fill-opacity', colorOpacity);
+    } else {
+      g.selectAll('.bar')
+        .data(data)
+        .enter().append('rect')
+        .attr('class', 'bar')
+        .style('fill', color)
+        .style('fill-opacity', colorOpacity)
+        .attr('x', (d) => xScale(d[xDataKey]))
+        .attr('y', (d, i) => yScale.rangeBand(d[dataKey]) * i)
+        .attr('height', (d, i) => innerH - yScale(d[dataKey]))
+        .attr('width', '7');
+    }
     // console.log('lin yScale: ', )
 
     return plane.node().toReact();
@@ -57,7 +67,9 @@ BarChart.propTypes = {
   height: React.PropTypes.number,
   data: React.PropTypes.array,
   barGap: React.PropTypes.number,
-  barSize: React.PropTypes.number
+  barSize: React.PropTypes.number,
+  color: React.PropTypes.string,
+  colorOpacity: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number])
 }
 
 export default BarChart;

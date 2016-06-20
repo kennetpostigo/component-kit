@@ -40,7 +40,8 @@ class RadarArea extends React.Component {
 
     var g = plane.append('g')
       .attr('transform', `translate(${width / 2}, ${height / 2} )`)
-      .style('z-index', this.props.zIndex);
+      .style('z-index', this.props.zIndex)
+      .style('display', 'inline-block');
 
       var layer = g.selectAll('.layer')
         .data([data]).enter()

@@ -19,6 +19,7 @@ class TreeMap extends React.Component {
         .style('position', 'relative')
         .style('width', width)
         .style('height', height)
+        .attr('class', 'TreeMap')
         .style('left', `10px`)
         .style('top', `40px`);
 
@@ -32,6 +33,12 @@ class TreeMap extends React.Component {
         .style("width", (d) => Math.max(0, d.dx - 1) + "px")
         .style("height", (d) => Math.max(0, d.dy - 1) + "px")
         .style('background', (d) => (d.children) ? color (d.name) : null)
+        .style('border', 'solid 1px white')
+        .style('10px', 'sans-serif')
+        .style('line-height', 12)
+        .style('overflow', 'hidden')
+        .style('position', 'absolute')
+        .style('text-indent', 2)
         .text((d) => (d.children) ? null : d.name);
 
 

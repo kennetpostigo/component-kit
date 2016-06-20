@@ -29,19 +29,23 @@ class LineChart extends React.Component {
         .attr('class', 'LineChart')
         .attr('width', width)
         .attr('height', height)
-        .style('z-index', this.props.zIndex);
+        .style('z-index', this.props.zIndex)
+        .style('position', 'absolute');
 
     var g = plane.append('g')
         .attr('class', 'plane')
         .attr('width', innerW)
         .attr('height', innerH)
-        .attr('transform', `translate(50, 20)`);
+        .attr('transform', `translate(50, 20)`)
+        .style('display', 'inline-block');
 
     g.append('path')
         .datum(data)
         .attr('class', 'line')
         .attr('d', line)
-        .style('stroke', color);
+        .style('fill', 'none')
+        .style('stroke', color)
+        .style('stroke-width', 2);
 
     g.selectAll('circle')
       .data(data)

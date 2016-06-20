@@ -22,13 +22,15 @@ class ScatterPlot extends React.Component {
     var plane = d3.select(planeElement)
         .attr('class', 'ScatterPlot')
         .attr('width', width)
-        .attr('height', height);
+        .attr('height', height)
+        .style('position', 'absolute');
 
     var g = plane.append('g')
         .attr('class', 'plane')
         .attr('width', innerW)
         .attr('height', innerH)
-        .attr('transform', `translate(50, 20)`);
+        .attr('transform', `translate(50, 20)`)
+        .style('display', 'inline-block');
 
     g.selectAll('.dot')
       .data(data)

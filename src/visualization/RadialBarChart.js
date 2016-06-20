@@ -19,6 +19,7 @@ class RadialBarChart extends React.Component {
 
     var colorScale = d3.scale.ordinal()
         .range(colors);
+
     var angleScale = d3.scale.linear();
 
     var chart = d3.select(ReactFauxDOM.createElement('svg'))
@@ -31,7 +32,6 @@ class RadialBarChart extends React.Component {
         .attr("transform", "translate(" + 11 + "," + 33 + ")");
 
     var pieG = g.append("g");
-
 
     var pie = d3.layout.pie();
     var arc = d3.svg.arc();
@@ -79,5 +79,12 @@ class RadialBarChart extends React.Component {
   }
 
 }
+
+RadialBarChart.propTypes = {
+  data: React.PropTypes.array,
+  width: React.PropTypes.number,
+  height: React.PropTypes.number,
+  colors: React.PropTypes.array
+};
 
 export default RadialBarChart;

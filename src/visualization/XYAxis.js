@@ -140,44 +140,69 @@ class XYAxis extends React.Component {
         .attr('class', 'XYAxis')
         .attr('width', width)
         .attr('height', height)
+        .style('position', 'relative')
         .style('z-index', 0);
 
     var g = plane.append('g')
         .attr('class', 'plane')
-        .attr('transform', `translate(50, 20)`);
+        .attr('transform', `translate(50, 20)`)
+        .style('display', 'inline-block');
 
     var xLines = g.append("g")
         .attr('class', 'x axis')
         .attr('transform', `translate(0, ${innerH})`)
-        .call(xAxis);
+        .call(xAxis)
+        .style('fill', 'rgb(102, 102, 102)')
+        .style('stroke', 'rgb(102, 102, 102)')
+        .style('font-size', 12)
+        .style('letter-spacing', 1.5)
+        .style('font-weight', 100);
 
     xLines.selectAll('line')
-    .style("stroke-dasharray", (gridLineType));
+    .style('stroke-width', '1')
+    .style('stroke', 'rgb(102, 102, 102)')
+    .style('opacity', 0.2)
+    .style('stroke-dasharray', (gridLineType))
+    .style('fill', 'rgb(102, 102, 102)')
+    .style('font-size', 12);
 
     xLines.append('text')
     .attr('class', 'label')
     .attr('x', innerW)
     .attr('y', -6)
     .style('text-anchor', 'end')
-    .text(xLabel);
+    .text(xLabel)
+    .style('fill', 'rgb(102, 102, 102)')
+    .style('font-size', 12);
 
     var yLines = g.append('g')
         .attr('class', 'y axis')
         .call(yAxis)
+        .style('fill', 'rgb(102, 102, 102)')
+        .style('stroke', 'rgb(102, 102, 102)')
+        .style('font-size', 12)
+        .style('letter-spacing', 1)
+        .style('font-weight', 100);
 
     yLines.selectAll('line')
     .style('stroke-width', '1')
-    .style('stroke-dasharray', (gridLineType));
+    .style('stroke', 'rgb(102, 102, 102)')
+    .style('opacity', 0.2)
+    .style('stroke-dasharray', (gridLineType))
+    .style('fill', 'rgb(102, 102, 102)')
+    .style('font-size', 12);
 
     yLines.append('text')
     .attr('transform', 'rotate(-90)')
     .attr('y', 6)
     .attr('dy', '.71em')
     .style('text-anchor', 'end')
-    .text(yLabel);
+    .text(yLabel)
+    .style('fill', 'rgb(102, 102, 102)')
+    .style('font-size', 12);
 
     return (
-      <div className="XYC">
+      <div style={{display: 'inline-block'}}>
         {
           (typeof this.props.children !== 'array') ?
                React.Children.map(this.props.children, (child, key) => {

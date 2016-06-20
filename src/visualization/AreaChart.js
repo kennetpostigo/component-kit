@@ -28,19 +28,23 @@ class AreaChart extends React.Component {
         .attr('class', 'AreaChart')
         .attr('width', width)
         .attr('height', height)
-        .style('z-index', this.props.zIndex);
+        .style('z-index', this.props.zIndex)
+        .style('position', 'absolute');
 
     var g = plane.append('g')
         .attr('class', 'plane')
         .attr('width', innerW)
         .attr('height', innerH)
-        .attr('transform', `translate(50, 20)`);
+        .attr('transform', `translate(50, 20)`)
+        .style('display', 'inline-block');
 
     g.append('path')
           .datum(data)
           .attr('class', 'area')
           .attr('d', area)
           .style('fill', color)
+          .style('stroke-linecap', 'round')
+          .style('stroke-linehoin', 'round')
           .style('fill-opacity', colorOpacity);
 
     return plane.node().toReact();

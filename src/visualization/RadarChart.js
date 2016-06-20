@@ -18,7 +18,9 @@ class RadarChart extends React.Component {
     var plane = d3.select(ReactFauxDOM.createElement('svg'))
         .attr('class', 'RadarChart')
         .attr('width', width)
-        .attr('height', height);
+        .attr('height', height)
+        .style('position', 'relative')
+        .style('display', 'inline-block');
 
     var g = plane.append('g')
       .attr('transform', `translate(${width / 2}, ${height / 2} )`);

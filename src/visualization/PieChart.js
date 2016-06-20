@@ -11,6 +11,7 @@ class PieChart extends React.Component {
           radius = this.props.radius,
           donut = this.props.donut,
           colorFill = (donut) ? radius - radius / donut : 0,
+          textColor = this.props.textColor || '#fff',
           colors = this.props.colors || ["#e1eef6","#ff5f2e","#fcbe32","#004e66",
           "#ff7473","#ffc952","#47b8e0","#34314c","#47b8e0","#47b8e0"],
           color = d3.scale.ordinal()
@@ -32,9 +33,11 @@ class PieChart extends React.Component {
         .attr('class', 'PieChart')
         .attr('width', width)
         .attr('height', height)
+        .style('display', 'inline-block')
 
     var g = chart.append('g')
-        .attr('transform', `translate(${width / 2}, ${height / 2})`);
+        .attr('transform', `translate(${width / 2}, ${height / 2})`)
+        .style('display', 'inline-block');
 
     var slice = g.selectAll('.arc')
         .data(pie(data))
@@ -48,7 +51,10 @@ class PieChart extends React.Component {
     slice.append('text')
         .attr('transform', (d) => `translate(${labelArc.centroid(d)})`)
         .attr('dy', '.35em')
-        .text((d) => d.data.x);
+        .text((d) => d.data.x)
+        .style('font', '10px sans-serif')
+        .style('fill', textColor)
+        .style('text-anchor', 'middle');
 
       return chart.node().toReact();
   }
@@ -60,7 +66,8 @@ PieChart.propTypes = {
   radius: React.PropTypes.number,
   colors: React.PropTypes.array,
   donut: React.PropTypes.number,
-  data: React.PropTypes.array
+  data: React.PropTypes.array,
+  textColor: React.PropTypes.string
 }
 
 export default PieChart;
