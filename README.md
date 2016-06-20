@@ -3,6 +3,10 @@
 </p>
 > UI-Kit for Rapidly Creating Dashboards
 
+[![version](https://img.shields.io/npm/v/component-kit.svg?style=flat-square)](http://npm.im/component-kit)
+[![downloads](https://img.shields.io/npm/dm/component-kit.svg?style=flat-square)](http://npm-stat.com/charts.html?package=component-kit&from=2016-06-13)
+[![MIT License](https://img.shields.io/npm/l/component-kit.svg?style=flat-square)](http://opensource.org/licenses/MIT)
+
 I made component-kit a project that mixes both UI and Charting Components. This
 makes it easier to get a dashboard up and running in a few minutes cake. This Library
 allows you to create charts individually as well as compose them together.
