@@ -1,9 +1,9 @@
 import React from 'react'
 import { render } from 'react-dom';
-import './../src/styles/bootstrap.css';
 import {
   Cards,
   Panels,
+  Platter,
   FooterNavigation,
   Tabs,
   XYAxis,
@@ -15,36 +15,18 @@ import {
   ScatterPlot,
   TreeMap,
   RadarChart,
-  RadialBarChart
+  RadarArea,
+  RadialBarChart,
+  Responsive
 } from './../dist/component-kit.js';
 
 var data = [
-  {x: 'A', y: .08167},
-  {x: 'B', y: .01492},
-  {x: 'C', y: .02782},
-  {x: 'D', y: .04253},
-  {x: 'E', y: .12702},
-  {x: 'F', y: .02288},
-  {x: 'G', y: .02015},
-  {x: 'H', y: .06094},
-  {x: 'I', y: .06966},
-  {x: 'J', y: .00153},
-  {x: 'K', y: .00772},
-  {x: 'L', y: .04025},
-  {x: 'M', y: .02406},
-  {x: 'N', y: .06749},
-  {x: 'O', y: .07507},
-  {x: 'P', y: .01929},
-  {x: 'Q', y: .00095},
-  {x: 'R', y: .05987},
-  {x: 'S', y: .06327},
-  {x: 'T', y: .09056},
-  {x: 'U', y: .02758},
-  {x: 'V', y: .00978},
-  {x: 'W', y: .02360},
-  {x: 'X', y: .00150},
-  {x: 'Y', y: .01974},
-  {x: 'Z', y: .00074}
+  {x: 'Kennet', y: 18},
+  {x: 'Jon', y: 12},
+  {x: 'David', y: 16},
+  {x: 'Simon', y: 8},
+  {x: 'Kendri', y: 20},
+  {x: 'SomeGuy', y: 2},
 ];
 var datay = [
   {x: 1, y: 'a'},
@@ -97,7 +79,6 @@ var data2 = [
   {x: 'DD', y: 72},
   {x: 'EE', y: 74},
 ];
-
 var data3 = [
   {x: 5, y: 63584},
   {x: 10, y: 42839},
@@ -107,7 +88,6 @@ var data3 = [
   {x: 30, y: 24839},
   {x: 50, y: 12839}
 ];
-
 var data3Check = [
   {xShit: 5,  yShit: 63584, cShit: 62573, lShit: 62573, aShit: 62573},
   {xShit: 10, yShit: 42839, cShit: 31729, lShit: 31729, aShit: 51729},
@@ -130,7 +110,6 @@ var color = [
   "#e1eef6","#ff5f2e","#fcbe32","#004e66","#ff7473","#ffc952","#47b8e0",
   "#34314c","#47b8e0","#47b8e0",
 ];
-
 var data4 = [
   {x: 2001, y: 0, t: 'k1'},
   {x: 2002, y: 30, t: 'k2'},
@@ -141,7 +120,6 @@ var data4 = [
   {x: 2007, y: 15, t: 'k2'},
   {x: 2008, y: 30, t: 'k3'}
 ];
-
 var dataRB = [
   {religion: 'Christian', population: 2173100000},
   {religion: 'Muslim', population: 1598360000},
@@ -152,36 +130,14 @@ var dataRB = [
   {religion: 'Other Religions', population: 57770000},
   {religion: 'Jewish', population: 173100000},
 ];
-
-var data5 = {
-    "id": "Raphael Varane",
-    "data": [
-        {
-            "skill": "Defending",
-            "count": 16
-        },
-        {
-            "skill": "Creativity",
-            "count": 10
-        },
-        {
-            "skill": "Attacking",
-            "count": 10
-        },
-        {
-            "skill": "Technical",
-            "count": 11
-        },
-        {
-            "skill": "Aerial",
-            "count": 15
-        },
-        {
-            "skill": "Mental",
-            "count": 14
-        }
-    ]
-};
+var data5 = [
+    { "skill": "field", y: 16, k1: 10, k2: 20 },
+    { "skill": "field1", y: 10, k1: 12, k2: 22 },
+    { "skill": "field2", y: 10, k1: 13, k2: 9 },
+    { "skill": "field3", y: 11, k1: 14, k2: 16 },
+    { "skill": "field4", y: 15, k1: 15, k2: 19 },
+    { "skill": "field5", y: 22, k1: 16, k2: 22 }
+];
 
 var treeMapData = {
 "name": "flare",
@@ -319,100 +275,176 @@ function ComponentThree (props) {
 function App (props) {
   return (
     <div>
-      <p>Examples</p>
-      <XYAxis xyConfig={{
-                width: 350,
-                height: 300,
-                grid: true,
-                gridLines: 'solid',
-                data: data3,
-                xDataKey: "x",
-                yDataKey: "y",
-                xLabel: 'x-axis',
-                yLabel: 'y-axis',
-                xTicks: 5,
-                yTicks: 5
-              }}>
-        <LineChart/>
-      </XYAxis>
-      <XYAxis width={350}
-              height={300}
-              data={data3Check}
-              xDataKey='xShit'
-              yDataKey="yShit"
-              grid={false}
-              xLabel={'x-axis'}
-              yLabel={'y-axis'}
-              gridLines={'dashed'}>
-        <AreaChart dataKey='cShit' color='#D1B6E1' colorOpacity={1}/>
-      </XYAxis>
-      <XYAxis width={350}
-              height={300}
-              data={data3Check}
-              xDataKey='xShit'
-              yDataKey='yShit'
-              grid={true}
-              gridLines={'solid'}>
-        <AreaChart dataKey='aShit'/>
-        <LineChart dataKey='lShit' pointColor="#ffc952" pointBorderColor='#34314c'/>
-      </XYAxis>
-      <XYAxis width={350}
-              height={300}
-              data={data4Check}
-              xDataKey='xShit'
-              yDataKey='yShit'
-              grid={true}
-              xLabel={'x'}
-              yLabel={'y'}
-              gridLines={'solid'}
-              defaultOrdinal='x'>
-        <ScatterPlot dataKey='cShit' colors={['blue']}/>
-        <ScatterPlot dataKey='lShit' pointRadius={6} colors={['red']}/>
-      </XYAxis>
-      <XYAxis width={350}
-              height={300}
-              data={data}
-              grid={true}
-              xLabel={'x'}
-              yLabel={'y'}
-              gridLines={'solid'}>
-        <BarChart/>
-      </XYAxis>
-      <XYAxis width={350}
-              height={300}
-              data={datay}
-              grid={true}
-              xLabel={'x'}
-              yLabel={'y'}
-              gridLines={'solid'}>
-        <BarChart/>
-      </XYAxis>
-      <PieChart width={350}
-                height={300}
-                radius={150}
-                data={data3}
-                colors={color}
-      />
-      <PieChart width={350}
-                height={300}
-                radius={150}
-                donut={2.5}
-                data={data3}
-                colors={color}
-      />
-      <RadarChart width={350}
-                  height={300}
-                  data={data5} />
-
-      <RadialBarChart width={350}
+      <div className="container-fluid" style={{marginBottom: 20}}>
+        <div className='row' style={{marginTop: 20}}>
+          <div className="col-sm-4">
+            <Panels width='100%' title='Scribbling Some Lines'>
+              <XYAxis xyConfig={{
+                        width: 350,
+                        height: 300,
+                        grid: true,
+                        gridLines: 'solid',
+                        data: data3,
+                        xDataKey: "x",
+                        yDataKey: "y",
+                        xLabel: 'x-axis',
+                        yLabel: 'y-axis',
+                        xTicks: 5,
+                        yTicks: 5
+                      }}>
+                <LineChart/>
+              </XYAxis>
+            </Panels>
+          </div>
+          <div className="col-sm-4">
+            <Panels width='100%' title='Marking my Area'>
+              <XYAxis width={350}
                       height={300}
-                      data={dataRB}
-                      colors={color}/>
-
-      <TreeMap width={350}
-               height={300}
-               root={treeMapData}
-      />
+                      data={data3Check}
+                      xDataKey='xShit'
+                      yDataKey="yShit"
+                      grid={false}
+                      xLabel={'x-axis'}
+                      yLabel={'y-axis'}
+                      gridLines={'dashed'}>
+                <AreaChart dataKey='cShit' color='#D1B6E1' colorOpacity={1}/>
+              </XYAxis>
+            </Panels>
+          </div>
+          <div className="col-sm-4">
+            <Panels width='100%' title='I Got Bars'>
+              <XYAxis width={350}
+                      height={300}
+                      data={data}
+                      grid={true}
+                      xLabel={'x'}
+                      yLabel={'y'}
+                      gridLines={'solid'}>
+                <BarChart/>
+              </XYAxis>
+            </Panels>
+          </div>
+        </div>
+        <div className="row" style={{marginTop: 20}}>
+          <div className="col-sm-8">
+            <Platter width="100%">
+              <Responsive width={400} height={500}>
+                <XYAxis data={data3Check}
+                        xDataKey='xShit'
+                        yDataKey='yShit'
+                        grid={true}
+                        gridLines={'solid'}>
+                  <AreaChart dataKey='aShit'/>
+                  <LineChart dataKey='lShit' pointColor="#ffc952" pointBorderColor='#34314c'/>
+                </XYAxis>
+              </Responsive>
+            </Platter>
+          </div>
+          <div className="col-sm-4">
+            <Platter width="100%">
+              <PieChart width={350}
+                        height={300}
+                        radius={150}
+                        donut={2.5}
+                        data={data3}
+                        colors={color}
+              />
+            </Platter>
+          </div>
+        </div>
+        <div className="row" style={{marginTop: 20}}>
+          <div className="col-sm-5">
+            <Tabs width='100%'
+                  height={800}
+                  tabs={[
+                          {
+                            title: 'Pie',
+                            component: <PieChart width={350}
+                                                 height={300}
+                                                 radius={150}
+                                                 data={data3}
+                                                 colors={color}/>
+                          },
+                          {
+                            title: 'Doughnut',
+                            component: <PieChart width={350}
+                                                 height={300}
+                                                 radius={150}
+                                                 donut={2.5}
+                                                 data={data3}
+                                                 colors={color}/>
+                          },
+                          {
+                            title: 'Composed',
+                            component: <XYAxis width={350}
+                                                height={300}
+                                                data={data3Check}
+                                                xDataKey='xShit'
+                                                yDataKey='yShit'
+                                                grid={true}
+                                                gridLines={'solid'}>
+                                          <AreaChart dataKey='aShit'/>
+                                          <LineChart dataKey='lShit' pointColor="#ffc952" pointBorderColor='#34314c'/>
+                                        </XYAxis>
+                          }
+                        ]}
+            />
+          </div>
+          <div className="col-sm-4">
+            <Cards graph={
+                    <RadarChart width={350}
+                                height={300}
+                                data={data5}
+                                rangeKey='y'
+                                labelKey='skill'>
+                      <RadarArea dataKey='k1' color='blue' colorOpacity='.7'/>
+                      <RadarArea dataKey='k2' color='red' colorOpacity='.7'/>
+                    </RadarChart>
+                  }
+                   width='100%'
+                   height={450}
+                   header="Composed Radar Chart"
+                   detail="Representation of some data that is important and relevant to the world..."
+                   links={[
+                     {
+                       href: 'http://google.com',
+                       title: 'google'
+                     },
+                     {
+                       href: 'http://facebook.com',
+                       title: 'facebook'
+                     }
+                   ]}>
+            </Cards>
+          </div>
+          <div className="col-sm-3">
+            <Cards graph={
+                    <RadarChart width={350}
+                                height={300}
+                                data={data5}
+                                rangeKey='y'
+                                labelKey='skill'>
+                      <RadarArea dataKey='k1' color='blue' colorOpacity='.7'/>
+                    </RadarChart>
+                  }
+                   width='100%'
+                   height={450}
+                   header="Lonely Radar Chart"
+                   detail="Representation of some data that is important and relevant to the world 2..."
+                   links={[
+                     {
+                       href: 'http://google.com',
+                       title: 'google'
+                     },
+                     {
+                       href: 'http://facebook.com',
+                       title: 'facebook'
+                     }
+                   ]}>
+            </Cards>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

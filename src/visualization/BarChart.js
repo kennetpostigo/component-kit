@@ -56,7 +56,6 @@ class BarChart extends React.Component {
         .attr('height', (d, i) => innerH - yScale(d[dataKey]))
         .attr('width', '7');
     }
-    // console.log('lin yScale: ', )
 
     return plane.node().toReact();
   }

@@ -26,15 +26,22 @@ class Panels extends React.Component {
         color: '#212121',
         fontSize: 15,
         padding: 0,
-        margin: 0,
+        marginTop: 15,
         float: 'left'
       },
       toggle: {
+        height: 25,
+        width: 25,
+        textAlign: 'center',
         color: '#212121',
         fontSize: 15,
-        padding: 0,
-        margin: 0,
-        float: 'right'
+        paddingTop: 0,
+        marginTop: 15,
+        borderRadius: '50%',
+        float: 'right',
+        ':hover': {
+          backgroundColor: '#f1f1f1',
+        }
       },
       body:{
         display: 'flex',

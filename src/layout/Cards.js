@@ -48,7 +48,6 @@ function Cards (props) {
       padding: 5,
       ':hover': {
         backgroundColor: '#f1f1f1',
-
       }
     },
     userStyle: props.styles || ''
