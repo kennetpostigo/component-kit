@@ -17,7 +17,7 @@ class Tabs extends React.Component {
       tabs: {
         width: this.props.width || 300,
         height: this.props.width || 500,
-        backgroundColor: this.props.BC || '#fff',
+        backgroundColor: this.props.backGroundColor || '#fff',
         boxShadow: '0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)'
       },
       tabList: {
@@ -37,6 +37,13 @@ class Tabs extends React.Component {
         listStyle: 'none',
         boxShadow: '0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)',
         borderBottom: `2px solid ${this.props.tabColor || '#3949AB'}`
+      },
+      component: {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        textAlign: 'center',
+        paddingTop: 20
       }
     })
     const cols = Math.round(12 / this.props.tabs.length);
@@ -60,10 +67,21 @@ class Tabs extends React.Component {
               })
             }
           </ul>
-          <TabComponent />
+          <div className={css(styles.component)}>
+            {TabComponent}
+          </div>
+
       </div>
     );
   }
 }
+
+Tabs.propTypes = {
+  width: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]),
+  height: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]),
+  backGroundColor: React.PropTypes.string,
+  tabColor: React.PropTypes.string,
+  tabs: React.PropTypes.array
+};
 
 export default Tabs;

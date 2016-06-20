@@ -41,7 +41,6 @@ class Panels extends React.Component {
         float: 'right'
       },
     });
-    console.log(this.state.open);
     return (
       <div className={`Panels ${css(styles.panels)}`}>
           {
@@ -53,7 +52,7 @@ class Panels extends React.Component {
                       <h3 className={css(styles.title)}>{this.props.title}</h3>
                     </div>
                     <div className='col-sm-3'>
-                      <p className={css(styles.toggle)} onClick={this.toggle}>V</p>
+                      <p className={css(styles.toggle)} onClick={this.toggle}>&#8595;</p>
                     </div>
                   </div>
                 </div>
@@ -65,7 +64,7 @@ class Panels extends React.Component {
                       <h3 className={css(styles.title)}>{this.props.title}</h3>
                     </div>
                     <div className='col-sm-3'>
-                      <p className={css(styles.toggle)} onClick={this.toggle}>^</p>
+                      <p className={css(styles.toggle)} onClick={this.toggle}>&#8593;</p>
                     </div>
                   </div>
                   <div className='row'>
@@ -77,5 +76,11 @@ class Panels extends React.Component {
     );
   }
 }
+
+Panels.propTypes = {
+  width: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]),
+  height: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]),
+  title: React.PropTypes.string
+};
 
 export default Panels;

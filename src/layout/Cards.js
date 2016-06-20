@@ -12,6 +12,15 @@ function Cards (props) {
       width: props.imgWidth || 300,
       height: props.imgHeight || 200
     },
+    graphBox: {
+      display: 'flex',
+      alignItem: 'center',
+      justifyContent: 'center',
+      borderBottom: "1px solid #CFCCCC"
+    },
+    graphInner: {
+
+    },
     fill: {
       padding: 10
     },
@@ -35,7 +44,7 @@ function Cards (props) {
       textDecoration: 'none',
       marginRight: 20,
       font: 'helvetica, sans-serif',
-      color: props.linkColor || '#505052', //6f6f6f
+      color: props.linkColor || '#505052',
       padding: 5,
       ':hover': {
         backgroundColor: '#f1f1f1',
@@ -44,10 +53,18 @@ function Cards (props) {
     },
     userStyle: props.styles || ''
   });
-
+  if(props.graph) var graph = props.graph
   return (
     <div className={`Cards ${css(styles.cards)}`}>
-      <img src={props.imgURI} className={css(styles.img)}/>
+      {
+        (props.graph)
+        ?
+        <div className={css(styles.graphBox)}>
+          {props.graph}
+        </div>
+        :
+        <img src={props.imgURI} className={css(styles.img)}/>
+      }
       <div className={css(styles.fill)}>
         {
           (props.children)
@@ -69,18 +86,19 @@ function Cards (props) {
 
 Cards.propTypes = {
   styles: React.PropTypes.object,
-  imgURI: React.PropTypes.string.isRequired,
-  height: React.PropTypes.number,
-  width: React.PropTypes.number,
-  imgWidth: React.PropTypes.number,
-  imgHeight: React.PropTypes.number,
+  imgURI: React.PropTypes.string,
+  width: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]),
+  height: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]),
+  imgWidth: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]),
+  imgHeight: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]),
   header: React.PropTypes.string,
   detail: React.PropTypes.string,
   links: React.PropTypes.arrayOf(React.PropTypes.shape({
     link: React.PropTypes.string,
     title: React.PropTypes.string
   })),
-  linkColor: React.PropTypes.string
+  linkColor: React.PropTypes.string,
+  graph: React.PropTypes.element
 };
 
 export default Cards;

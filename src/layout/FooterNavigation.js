@@ -7,10 +7,10 @@ function FooterNavigation (props) {
   var styles = StyleSheet.create({
     footerNav: {
       width: '100%',
-      height: 60,
+      height: props.height || 60,
       position: 'fixed',
       bottom: 0,
-      backgroundColor: '#fff',
+      backgroundColor: props.backgroundColor || '#fff',
       boxShadow: '0px 0px 5px rgba(0,0,0,.3);'
     },
     icon: {
@@ -58,5 +58,8 @@ function FooterNavigation (props) {
     </div>
   );
 }
+FooterNavigation.propTypes = {
+  height: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]),
+};
 
 export default FooterNavigation;
