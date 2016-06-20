@@ -21,10 +21,6 @@ class Panels extends React.Component {
         boxShadow: "0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)",
         width: this.props.width || 400,
         minHeight: this.props.height || 35,
-        paddingTop: 15,
-        paddingLeft: 15,
-        paddingRight: 15,
-        paddingBottom: 15
       },
       title: {
         color: '#212121',
@@ -40,6 +36,12 @@ class Panels extends React.Component {
         margin: 0,
         float: 'right'
       },
+      body:{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        textAlign: 'center',
+      }
     });
     return (
       <div className={`Panels ${css(styles.panels)}`}>
@@ -67,7 +69,7 @@ class Panels extends React.Component {
                       <p className={css(styles.toggle)} onClick={this.toggle}>&#8593;</p>
                     </div>
                   </div>
-                  <div className='row'>
+                  <div className={`row ${css(styles.body)}`}>
                     {this.props.children}
                   </div>
                 </div>
