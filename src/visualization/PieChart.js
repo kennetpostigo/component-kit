@@ -64,7 +64,6 @@ class PieChart extends React.Component {
 PieChart.propTypes = {
   width: React.PropTypes.number,
   height: React.PropTypes.number,
-  radius: React.PropTypes.number,
   colors: React.PropTypes.array,
   donut: React.PropTypes.number,
   data: React.PropTypes.array,
