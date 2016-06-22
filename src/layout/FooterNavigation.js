@@ -59,6 +59,11 @@ function FooterNavigation (props) {
   );
 }
 FooterNavigation.propTypes = {
+  views: React.PropTypes.arrayOf(React.PropTypes.shape({
+    link: React.PropTypes.string,
+    icon: React.PropTypes.string,
+    title: React.PropTypes.string
+  })),
   height: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]),
 };
 

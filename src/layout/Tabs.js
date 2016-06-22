@@ -81,7 +81,10 @@ Tabs.propTypes = {
   height: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]),
   backGroundColor: React.PropTypes.string,
   tabColor: React.PropTypes.string,
-  tabs: React.PropTypes.array
+  tabs: React.PropTypes.arrayOf(React.PropTypes.shape({
+    title: React.PropTypes.string,
+    component: React.PropTypes.element
+  }))
 };
 
 export default Tabs;

@@ -49,8 +49,7 @@ function Cards (props) {
       ':hover': {
         backgroundColor: '#f1f1f1',
       }
-    },
-    userStyle: props.styles || ''
+    }
   });
   if(props.graph) var graph = props.graph
   return (
@@ -84,7 +83,6 @@ function Cards (props) {
 }
 
 Cards.propTypes = {
-  styles: React.PropTypes.object,
   imgURI: React.PropTypes.string,
   width: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]),
   height: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]),
