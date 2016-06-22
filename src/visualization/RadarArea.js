@@ -59,7 +59,7 @@ class RadarArea extends React.Component {
 }
 
 RadarArea.propTypes = {
-  dataKey: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]),
+  dataKey: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]).isRequired,
   color: React.PropTypes.string,
   colorOpacity: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number])
 };

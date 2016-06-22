@@ -4,8 +4,9 @@ import ReactFauxDOM from 'react-faux-dom';
 
 class PieChart extends React.Component {
   render () {
-    // const {width, height, radius, colors, data, donut} = this.props;
     const data = this.props.data,
+          dataKey = this.props.dataKey || 'y',
+          labelKey = this.props.labelKey || 'x',
           width= this.props.width || 350,
           height = this.props.height || 300,
           radius = this.props.radius,
@@ -27,7 +28,7 @@ class PieChart extends React.Component {
 
     var pie = d3.layout.pie()
         .sort(null)
-        .value((d) => d.y);
+        .value((d) => d[dataKey]);
 
     var chart = d3.select(ReactFauxDOM.createElement('svg'))
         .attr('class', 'PieChart')
@@ -46,12 +47,12 @@ class PieChart extends React.Component {
 
     slice.append('path')
         .attr('d', arc)
-        .style('fill', (d) => color(d.data.x));
+        .style('fill', (d) => color(d.data[labelKey]));
 
     slice.append('text')
         .attr('transform', (d) => `translate(${labelArc.centroid(d)})`)
         .attr('dy', '.35em')
-        .text((d) => d.data.x)
+        .text((d) => d.data[labelKey])
         .style('font', '10px sans-serif')
         .style('fill', textColor)
         .style('text-anchor', 'middle');
@@ -66,7 +67,9 @@ PieChart.propTypes = {
   radius: React.PropTypes.number,
   colors: React.PropTypes.array,
   donut: React.PropTypes.number,
-  data: React.PropTypes.array,
+  data: React.PropTypes.array.isRequired,
+  dataKey: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]).isRequired,
+  labelKey: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]).isRequired,
   textColor: React.PropTypes.string
 }
 

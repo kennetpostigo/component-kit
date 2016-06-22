@@ -47,8 +47,8 @@ class XYAxis extends React.Component {
         xScale = scales.xScale,
         yScale= scales.yScale,
         xyConfig = this.props.xyConfig || {},
-        xTicks = (xyConfig.xTicks) ? xyConfig.xTicks : this.props.xTicks,
-        yTicks = (xyConfig.yTicks) ? xyConfig.yTicks : this.props.yTicks,
+        xTicks = (xyConfig.xTicks) ? xyConfig.xTicks : this.props.xTicks || 4,
+        yTicks = (xyConfig.yTicks) ? xyConfig.yTicks : this.props.yTicks || 4,
         grid = (xyConfig.grid) ? xyConfig.grid : this.props.grid || true;
 
     if (grid) {
@@ -219,11 +219,11 @@ class XYAxis extends React.Component {
 
 XYAxis.propTypes = {
   xyConfig: React.PropTypes.object,
-  width: React.PropTypes.number,
-  height: React.PropTypes.number,
-  data: React.PropTypes.any,
-  xdataKey: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]),
-  ydataKey: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]),
+  width: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]),
+  height: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]),
+  data: React.PropTypes.array.isRequired,
+  xdataKey: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]).isRequired,
+  ydataKey: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]).isRequired,
   defaultOrdinal: React.PropTypes.oneOf(['x', 'y', 'xy']),
   xTicks: React.PropTypes.number,
   yTicks: React.PropTypes.number,

@@ -52,11 +52,11 @@ class AreaChart extends React.Component {
 }
 
 AreaChart.propTypes = {
-  width: React.PropTypes.number,
-  height: React.PropTypes.number,
-  data: React.PropTypes.array,
-  dataKey: React.PropTypes.string,
-  color: React.PropTypes.any,
+  width: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]),
+  height: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]),
+  data: React.PropTypes.array.isRequired,
+  dataKey: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]).isRequired,
+  color: React.PropTypes.string,
   colorOpacity: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number])
 }
 

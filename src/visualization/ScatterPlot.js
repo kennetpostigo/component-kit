@@ -48,9 +48,9 @@ class ScatterPlot extends React.Component {
 ScatterPlot.propTypes = {
   width: React.PropTypes.number,
   height: React.PropTypes.number,
-  data: React.PropTypes.array,
+  data: React.PropTypes.array.isRequired,
   colors: React.PropTypes.array,
-  dataKey: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]),
+  dataKey: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]).isRequired,
   scatterKey: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]),
   pointRadius: React.PropTypes.number
 }

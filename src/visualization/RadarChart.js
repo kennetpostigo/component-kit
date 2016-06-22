@@ -95,17 +95,6 @@ class RadarChart extends React.Component {
       .style('fill', '#CFCCCC')
       .text((d) => d[labelKey]);
 
-    // var layer = g.selectAll('.layer')
-    //   .data([data]).enter()
-    //   .append('path')
-    //   .attr('class', 'layer')
-    //   .attr('d', (d) => area(d))
-    //   .style('fill', color)
-    //   .style('fill-opacity', .7)
-    //   .style('stroke', '#CFCCCC')
-    //   .style('stroke-width', '0.5px')
-    //   .style('font-size', 12);
-
       return (
         <div className="XYC">
           {
@@ -125,10 +114,9 @@ class RadarChart extends React.Component {
 RadarChart.propTypes = {
   width: React.PropTypes.number,
   height: React.PropTypes.number,
-  radius: React.PropTypes.number,
-  data: React.PropTypes.array,
-  rangeKey: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]),
-  labelKey: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number])
+  data: React.PropTypes.array.isRequired,
+  rangeKey: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]).isRequired,
+  labelKey: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]).isRequired
 };
 
 export default RadarChart;
