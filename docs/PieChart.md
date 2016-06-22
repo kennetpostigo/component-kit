@@ -1,4 +1,4 @@
-# `<PieChar/>`
+# `<PieChart/>`
 
 Component Renders a circle is divided into sectors that each represent a proportion of the whole. (set it to Donut chart by passing in donut prop)
 

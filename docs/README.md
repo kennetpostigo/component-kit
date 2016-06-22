@@ -10,7 +10,7 @@ Charting Components:
 + __[`<BarChart/>`](BarChart.md)__ - Component Renders vertical bars to show comparisons among categories.
 + __[`<ScatterPlot/>`](ScatterPlot.md)__ - Component Renders a plot based on one or many datasets.
 + __[`<PieChart/>`](PieChart.md)__ - Component Renders a circle is divided into sectors that each represent a proportion of the whole. (set it to Donut chart by passing in donut prop)
-+ __[`<RadarChart/>`](RadarChart.md)__ - Component Renders a sequence of equi-angular spokes called radii with an overlayed area(([`<RadarArea/>`](RadarArea.md)) to provide comparisons of the dataset.
++ __[`<RadarChart/>`](RadarChart.md)__ - Component Renders a sequence of equi-angular spokes called radii with an overlayed area ([`<RadarArea/>`](RadarArea.md)) to provide comparisons of the dataset.
 
 Charts Coming soon:
 + __`<RadialBarChart/>`__
