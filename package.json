@@ -1,6 +1,6 @@
 {
   "name": "component-kit",
-  "version": "0.1.12",
+  "version": "0.1.13",
   "description": "component-kit, a library for modern data-driven applications",
   "main": "./dist/component-kit.js",
   "scripts": {
