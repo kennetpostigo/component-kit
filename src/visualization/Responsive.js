@@ -1,4 +1,5 @@
 import React from 'react';
+import { findDOMNode } from 'react-dom';
 
 class Responsive extends React.Component{
     constructor () {
@@ -17,6 +18,12 @@ class Responsive extends React.Component{
     }
 
     componentWillReceiveProps () {
+        this.setState({
+          size: {
+          w: this.props.width,
+          h: this.props.height
+          }
+        });
         this.fitToParentSize();
     }
 
@@ -25,7 +32,7 @@ class Responsive extends React.Component{
     }
 
     fitToParentSize () {
-        let elem = React.findDOMNode(this);
+        let elem = findDOMNode(this);
         let w = elem.parentNode.offsetWidth;
         let h = elem.parentNode.offsetHeight;
         let currentSize = this.state.size;
@@ -44,8 +51,8 @@ class Responsive extends React.Component{
 
         let {width, height} = this.props;
 
-        width = this.state.size.w || 100;
-        height = this.state.size.h || 100;
+        width = this.state.size.w;
+        height = this.state.size.h;
 
         var Charts = React.cloneElement(this.props.children, { width, height});
 
