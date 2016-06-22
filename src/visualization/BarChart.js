@@ -64,7 +64,7 @@ class BarChart extends React.Component {
 BarChart.propTypes = {
   width: React.PropTypes.number,
   height: React.PropTypes.number,
-  data: React.PropTypes.array.isRequired,
+  data: React.PropTypes.array,
   dataKey: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]).isRequired,
   color: React.PropTypes.string,
   colorOpacity: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number])

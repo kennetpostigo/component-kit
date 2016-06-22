@@ -67,7 +67,7 @@ PieChart.propTypes = {
   radius: React.PropTypes.number,
   colors: React.PropTypes.array,
   donut: React.PropTypes.number,
-  data: React.PropTypes.array.isRequired,
+  data: React.PropTypes.array,
   dataKey: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]).isRequired,
   labelKey: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]).isRequired,
   textColor: React.PropTypes.string

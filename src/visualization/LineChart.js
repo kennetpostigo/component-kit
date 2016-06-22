@@ -64,7 +64,7 @@ class LineChart extends React.Component {
 LineChart.propTypes = {
   width: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]),
   height: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]),
-  data: React.PropTypes.array.isRequired,
+  data: React.PropTypes.array,
   dataPoints: React.PropTypes.bool,
   dataKey: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]).isRequired,
   color: React.PropTypes.string,
