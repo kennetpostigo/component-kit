@@ -9,7 +9,7 @@ class PieChart extends React.Component {
           labelKey = this.props.labelKey || 'x',
           width= this.props.width || 350,
           height = this.props.height || 300,
-          radius = this.props.radius,
+          radius = Math.min(width, height) /2.1,
           donut = this.props.donut,
           colorFill = (donut) ? radius - radius / donut : 0,
           textColor = this.props.textColor || '#fff',
@@ -53,7 +53,7 @@ class PieChart extends React.Component {
         .attr('transform', (d) => `translate(${labelArc.centroid(d)})`)
         .attr('dy', '.35em')
         .text((d) => d.data[labelKey])
-        .style('font', '10px sans-serif')
+        .style('font', '11px sans-serif')
         .style('fill', textColor)
         .style('text-anchor', 'middle');
 
