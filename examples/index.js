@@ -16,8 +16,7 @@ import {
   TreeMap,
   RadarChart,
   RadarArea,
-  RadialBarChart,
-  Responsive
+  RadialBarChart
 } from './../dist/component-kit.js';
 
 var data = [
@@ -328,8 +327,9 @@ function App (props) {
         <div className="row" style={{marginTop: 20}}>
           <div className="col-sm-8">
             <Platter width="100%">
-              <Responsive width={400} height={500}>
-                <XYAxis data={data3Check}
+                <XYAxis width={800}
+                        height={400}
+                        data={data3Check}
                         xDataKey='xShit'
                         yDataKey='yShit'
                         grid={true}
@@ -337,7 +337,6 @@ function App (props) {
                   <AreaChart dataKey='aShit'/>
                   <LineChart dataKey='lShit' pointColor="#ffc952" pointBorderColor='#34314c'/>
                 </XYAxis>
-              </Responsive>
             </Platter>
           </div>
           <div className="col-sm-4">
@@ -347,6 +346,8 @@ function App (props) {
                         radius={150}
                         donut={2.5}
                         data={data3}
+                        dataKey='y'
+                        labelKey='x'
                         colors={color}
               />
             </Platter>
@@ -355,7 +356,7 @@ function App (props) {
         <div className="row" style={{marginTop: 20}}>
           <div className="col-sm-5">
             <Tabs width='100%'
-                  height={800}
+                  height={450}
                   tabs={[
                           {
                             title: 'Pie',
@@ -363,6 +364,8 @@ function App (props) {
                                                  height={300}
                                                  radius={150}
                                                  data={data3}
+                                                 dataKey='y'
+                                                 labelKey='x'
                                                  colors={color}/>
                           },
                           {
@@ -372,6 +375,8 @@ function App (props) {
                                                  radius={150}
                                                  donut={2.5}
                                                  data={data3}
+                                                 dataKey='y'
+                                                 labelKey='x'
                                                  colors={color}/>
                           },
                           {
