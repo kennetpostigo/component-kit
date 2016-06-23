@@ -16,7 +16,8 @@ import {
   TreeMap,
   RadarChart,
   RadarArea,
-  RadialBarChart
+  RadialBarChart,
+  Responsive
 } from './../dist/component-kit.js';
 
 var data = [
@@ -253,24 +254,6 @@ var treeMapData = {
 ]
 };
 
-function ComponentOne (props) {
-  return (
-    <h1>Im Component 1</h1>
-  );
-}
-
-function ComponentTwo (props) {
-  return (
-    <h1>Im Component 2</h1>
-  );
-}
-
-function ComponentThree (props) {
-  return (
-    <h1>Im Component 3</h1>
-  );
-}
-
 function App (props) {
   return (
     <div>
@@ -291,7 +274,7 @@ function App (props) {
                         xTicks: 5,
                         yTicks: 5
                       }}>
-                <LineChart/>
+                <LineChart dataKey='y'/>
               </XYAxis>
             </Panels>
           </div>
@@ -312,24 +295,23 @@ function App (props) {
           </div>
           <div className="col-sm-4">
             <Panels width='100%' title='I Got Bars'>
-              <XYAxis width={350}
-                      height={300}
-                      data={data}
-                      grid={true}
-                      xLabel={'x'}
-                      yLabel={'y'}
-                      gridLines={'solid'}>
-                <BarChart/>
-              </XYAxis>
+              <Responsive width={350} height={300}>
+                <XYAxis data={data}
+                        grid={true}
+                        xLabel={'x'}
+                        yLabel={'y'}
+                        gridLines={'solid'}>
+                  <BarChart dataKey='y'/>
+                </XYAxis>
+              </Responsive>
             </Panels>
           </div>
         </div>
         <div className="row" style={{marginTop: 20}}>
           <div className="col-sm-8">
             <Platter width="100%">
-                <XYAxis width={800}
-                        height={400}
-                        data={data3Check}
+              <Responsive width={800} height={500}>
+                <XYAxis data={data3Check}
                         xDataKey='xShit'
                         yDataKey='yShit'
                         grid={true}
@@ -337,19 +319,20 @@ function App (props) {
                   <AreaChart dataKey='aShit'/>
                   <LineChart dataKey='lShit' pointColor="#ffc952" pointBorderColor='#34314c'/>
                 </XYAxis>
+              </Responsive>
             </Platter>
           </div>
           <div className="col-sm-4">
             <Platter width="100%">
-              <PieChart width={350}
-                        height={300}
-                        radius={150}
-                        donut={2.5}
-                        data={data3}
-                        dataKey='y'
-                        labelKey='x'
-                        colors={color}
-              />
+              <Responsive width={350} height={300}>
+                <PieChart radius={150}
+                          donut={2.5}
+                          data={data3}
+                          dataKey='y'
+                          labelKey='x'
+                          colors={color}
+                />
+              </Responsive>
             </Platter>
           </div>
         </div>
@@ -369,15 +352,18 @@ function App (props) {
                                                  colors={color}/>
                           },
                           {
-                            title: 'Doughnut',
-                            component: <PieChart width={350}
-                                                 height={300}
-                                                 radius={150}
-                                                 donut={2.5}
-                                                 data={data3}
-                                                 dataKey='y'
-                                                 labelKey='x'
-                                                 colors={color}/>
+                            title: 'Scatter Plot',
+                            component: <XYAxis width={350}
+                                               height={350}
+                                               data={data3Check}
+                                               xDataKey='xShit'
+                                               yDataKey='yShit'
+                                               grid={true}
+                                               gridLines={'solid'}>
+                                          <ScatterPlot data={data4Check}
+                                                       dataKey='cShit'
+                                                       pointRadius={3}/>
+                                        </XYAxis>
                           },
                           {
                             title: 'Composed',

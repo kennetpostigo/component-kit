@@ -12,6 +12,9 @@ Charting Components:
 + __[`<PieChart/>`](PieChart.md)__ - Component Renders a circle is divided into sectors that each represent a proportion of the whole. (set it to Donut chart by passing in donut prop)
 + __[`<RadarChart/>`](RadarChart.md)__ - Component Renders a sequence of equi-angular spokes called radii with an overlayed area ([`<RadarArea/>`](RadarArea.md)) to provide comparisons of the dataset.
 
+Utility Component:
++ __[`<Responsive/>`](Responsive.md)__ - Component Wraps Charting Components and makes them Responsive and Mobile-Friendly.
+
 Charts Coming soon:
 + __`<RadialBarChart/>`__
 + __`<TreeMap/>`__
