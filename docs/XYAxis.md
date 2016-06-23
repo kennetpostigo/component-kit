@@ -102,3 +102,7 @@ draw grid lines. Otherwise it won't
   <AreaChart dataKey='a' color="blue"/>
 </XYAxis>
 ```
+<h2 align="center">Sample XYAxis</h2>
+<p align="center">
+  <img align="center" src="docsAssets/XYAxisExample.png" height="250"/>
+</p>

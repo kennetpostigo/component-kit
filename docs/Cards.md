@@ -42,5 +42,32 @@ Optional parameter to place one of the graphs (Line, Area, etc.) in place of an 
 
 ### Examples
 ```js
-
+<Cards graph={
+        <RadarChart width={350}
+                    height={300}
+                    data={data5}
+                    rangeKey='y'
+                    labelKey='skill'>
+          <RadarArea dataKey='k1' color='blue' colorOpacity='.7'/>
+        </RadarChart>
+      }
+       width='100%'
+       height={450}
+       header="Lonely Radar Chart"
+       detail="Representation of some data that is important and relevant to the world 2..."
+       links={[
+         {
+           href: 'http://google.com',
+           title: 'google'
+         },
+         {
+           href: 'http://facebook.com',
+           title: 'facebook'
+         }
+       ]}>
+</Cards>
 ```
+<h2 align="center">Sample Card</h2>
+<p align="center">
+  <img align="center" src="docsAssets/CardExample.png" height="250"/>
+</p>

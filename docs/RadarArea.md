@@ -14,6 +14,4 @@ The color that you want the RadarArea to have.
 The opacity you want the RadarArea to have.
 
 ### Examples
-```js
-
-```
+See [RadarChart for Usage](RadarArea.md)

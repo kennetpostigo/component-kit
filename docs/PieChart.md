@@ -33,5 +33,45 @@ This property is used to turn the PieChart into a donut chart. It takes a number
 
 ### Examples
 ```js
+var data = [
+  {x: 5, y: 63584},
+  {x: 10, y: 42839},
+  {x: 12, y: 35894},
+  {x: 18, y: 58934},
+  {x: 25, y: 74323},
+  {x: 30, y: 24839},
+  {x: 50, y: 12839}
+];
 
+var color = [
+  "#e1eef6","#ff5f2e","#fcbe32","#004e66","#ff7473","#ffc952","#47b8e0",
+  "#34314c","#47b8e0","#47b8e0",
+];
+
+//Pie
+<PieChart width={350}
+          height={300}
+          radius={150}
+          data={data3}
+          dataKey='y'
+          labelKey='x'
+          colors={color}/>
+//Donut
+<PieChart width={350}
+          height={300}
+          radius={150}
+          donut={2.5}
+          data={data}
+          dataKey='y'
+          labelKey='x'
+          colors={color}
+/>
 ```
+<h2 align="center">Sample PieChart</h2>
+<p align="center">
+  <img align="center" src="docsAssets/PieChartExamples.png" height="250"/>
+</p>
+<h2 align="center">Sample PieChart (Donut)</h2>
+<p align="center">
+  <img align="center" src="docsAssets/DonutChartExample.png" height="250"/>
+</p>
